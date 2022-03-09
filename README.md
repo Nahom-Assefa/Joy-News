@@ -43,4 +43,4 @@ Created by Nahom Assefa, Muktar Ahmed, and Joshua Schermann.
 
 ## Questions
 
-Post an issue if you see a bug or suggested improvement.
+Post an issue if you see a bug or suggested improvement. 
