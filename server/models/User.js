@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
-const { default: articleSchema } = require("./Article");
+const articleSchema = require('./Article')
 
 const userSchema = new Schema(
   {
