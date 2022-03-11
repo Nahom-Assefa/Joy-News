@@ -20,4 +20,4 @@ const articleSchema = new Schema({
 
 
 
-export default articleSchema
+module.exports=articleSchema
