@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
+const { default: articleSchema } = require("./Article");
 
 const userSchema = new Schema(
   {
@@ -20,12 +21,8 @@ const userSchema = new Schema(
       required: true,
       minlength: 5,
     },
-    article: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Article",
-      },
-    ],
+    //saved book array 
+    savedArticles: [articleSchema],
   },
   {
     toJSON: {

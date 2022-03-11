@@ -18,6 +18,6 @@ const articleSchema = new Schema({
   },
 });
 
-const Article = model("Article", articleSchema);
 
-export default Article;
+
+export default articleSchema
