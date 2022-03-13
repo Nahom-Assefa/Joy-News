@@ -1,56 +1,82 @@
-const User =require('../models/User')
-const { AuthenticationError } = require('apollo-server-express');
-const { signToken } = require('../utils/auth');
+const User = require("../models/User");
+const { AuthenticationError } = require("apollo-server-express");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
-    Query: {
-      me: async (parent, args, context) => {
-        if (context.user) {
-          const userData = await User.findOne({ _id: context.user._id })
-            .select('-__v -password')
-           
-      
-          return userData;
-        }
-        throw new AuthenticationError('Not logged in');
-        // throw new AuthenticationError('Not logged in');
-      },
-      users: async () => {
-        return User.find()
-          .select("-__v -password")
-          // .populate("savedArticle");
-      },
-      user: async (parent, { username }) => {
-        return User.findOne({ username })
-          .select("-__v -password")
-          // .populate("savedArticle");
-      },
-    },
-    Mutation: {
-      
-      addUser: async (parent, args) => {
-        const user = await User.create(args);
-        const token = signToken(user);
-      
-        return { token, user };
-      },
-      login: async (parent, { email, password }) => {
-        const user = await User.findOne({ email });
+  Query: {
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id }).select(
+          "-__v -password"
+        );
 
-        if (!user) {
-          throw new AuthenticationError('Incorrect credentials');
-        }
-      
-        const correctPw = await user.isCorrectPassword(password);
-      
-        if (!correctPw) {
-          throw new AuthenticationError('Incorrect credentials');
-        }
-      
-        const token = signToken(user);
-        return { token, user };
+        return userData;
       }
-    }
-  };
-  
-  module.exports = resolvers;
+      throw new AuthenticationError("Not logged in");
+      // throw new AuthenticationError('Not logged in');
+    },
+    users: async () => {
+      return User.find().select("-__v -password");
+      // .populate("savedArticle");
+    },
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).select("-__v -password");
+      // .populate("savedArticle");
+    },
+  },
+  Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
+    },
+
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
+
+    savedArticle: async (parent, { article }, context) => {
+      if (context.user) {
+        const updateUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedArticle: article } },
+          { new: true }
+        );
+        return updateUser;
+      }
+      throw new AuthenticationError(
+        "You need to be logged in to save articles!"
+      );
+    },
+
+    deleteArticle: async (parent, { article }, context) => {
+      if (context.user) {
+        const removeArticle = await User.findOneAndDelete(
+          { _id: context.user._id },
+          { $pull: { savedArticle: article } },
+          { new: true }
+        );
+        return removeArticle;
+      }
+      throw new AuthenticationError(
+        "You need to be logged to delete articles!"
+      );
+    },
+  },
+};
+
+module.exports = resolvers;
