@@ -10,10 +10,7 @@ const Header = () => {
 
   return (
     <header className="row">
-      <Link to="/" className="offset-4 col-4">
-        <h1>Joy News</h1>
-      </Link>
-      <nav className="offset-2 col-2">
+      <nav className="offset-10 col-2">
         {Auth.loggedIn() ? (
           <>
             <Link to="/profile">Profile</Link>
@@ -23,11 +20,15 @@ const Header = () => {
           </>
         ) : (
           <>
-            <Link to="/login">Login</Link>
+            <Link className="pageLinks" to="/login">Login</Link>
             <Link to="/signup">Signup</Link>
           </>
         )}
       </nav>
+
+      <Link to="/" className="offset-4 col-4">
+        <h1 className="oldFont col-12 d-flex justify-content-center p-3">Joy News</h1>
+      </Link>
     </header>
   );
 };
