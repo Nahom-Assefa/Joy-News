@@ -6,7 +6,7 @@ import { QUERY_THOUGHTS, QUERY_ME_BASIC } from "../utils/queries";
 // import ThoughtForm from '../components/ThoughtForm';
 import Auth from "../utils/auth";
 // import FetchNews from "../components/FetchNews";
-import Articles from "../pages/Articles.js"
+import HomeArticles from "./HomeArticles.js"
 
 const Home = () => {
   // use useQuery hook to make query request
@@ -22,7 +22,7 @@ const Home = () => {
     <>
       {/* Leave off to avoid extra API calls */}
       {/* <FetchNews /> */}
-      <Articles />
+      <HomeArticles />
 
     </>
   );

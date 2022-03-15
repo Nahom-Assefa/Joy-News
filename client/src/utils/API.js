@@ -1,25 +1,12 @@
-export const gnewsTechnology = async () => {
-  const data = await fetch(
-    `https://gnews.io/api/v4/search?q=technology&token=${process.env.REACT_APP_GNEWSAPI}`
-  );
-
-  const jsonData = await data.json();
-
-  return jsonData.articles;
-};
-
-export const gnewsScience = async () => {
-  const data = await fetch(
-    `https://gnews.io/api/v4/search?q=science&token=${process.env.REACT_APP_GNEWSAPI}`
-  );
-
-  const jsonData = await data.json();
-
-  return jsonData.articles;
-};
-
 export const gnewsArticles = async () => {
   try {
+    const filterArticles = (articles) => {
+      const filteredArticles = articles.filter((articles) => {
+        // return (!articles.title.includes("mask", 0)||!articles.title.includes("die", 0));
+        return !articles.title.includes("die", 0);
+      });
+      return filteredArticles;
+    };
 
     const tech = await fetch(
       `https://gnews.io/api/v4/search?q=science&token=${process.env.REACT_APP_GNEWSAPI}`
@@ -35,7 +22,8 @@ export const gnewsArticles = async () => {
     const allArticles = techArray.concat(scienceArray);
     console.log("allArticles", allArticles);
 
-    return allArticles;
+    console.log("filteredArticles",filterArticles(allArticles));
+    return filterArticles(allArticles);
   } catch (error) {
     console.log(error);
   }

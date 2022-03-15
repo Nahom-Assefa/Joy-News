@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { gnewsArticles, gnewsTechnology, gnewsScience } from "../utils/API";
+import { gnewsArticles } from "../utils/API";
 
-function FetchNews() {
+function HomeArticles() {
+  // Use this to test if 
   // console.log("process.env",process.env);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,28 +27,7 @@ function FetchNews() {
         setIsLoaded(true);
         setError(error);
       }
-    ); ///////////////;
-
-    // gnewsScience().then(
-    //   (result) => {
-    //     // setArticles(result);
-    //     console.log(result);
-    //     totalArticles.push(result);
-    //     console.log("totalArticles:", totalArticles);
-    //     // set total articles to articles
-    //     setArticles(totalArticles)
-    //     console.log("Articles state:", articles)
-    //     setIsLoaded(true);
-    //   },
-    //   // Note: it's important to handle errors here
-    //   // instead of a catch() block so that we don't swallow
-    //   // exceptions from actual bugs in components.
-    //   (error) => {
-    //     // wait till last one for set is loaded true
-    //     setIsLoaded(true);
-    //     setError(error);
-    //   }
-    // );
+    ); 
   }, []);
 
   if (error) {
@@ -59,14 +39,14 @@ function FetchNews() {
       <>
         <h1>ARTICLES</h1>
         <p>read console for data</p>
-        {/* <ul>
+        <ul>
           {articles.map((articles) => (
             <li key={articles.title}>{articles.title}</li>
           ))}
-        </ul> */}
+        </ul>
       </>
     );
   }
 }
 
-export default FetchNews;
+export default HomeArticles;
