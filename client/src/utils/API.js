@@ -2,8 +2,23 @@ export const gnewsArticles = async () => {
   try {
     const filterArticles = (articles) => {
       const filteredArticles = articles.filter((articles) => {
-        // return (!articles.title.includes("mask", 0)||!articles.title.includes("die", 0));
-        return !articles.title.includes("die", 0);
+        return (
+          !articles.title.includes("Invasion", 0) &&
+          !articles.title.includes("invasion", 0) &&
+          !articles.title.includes("war", 0) &&
+          !articles.title.includes("War", 0) &&
+          !articles.title.includes("Ukraine", 0) &&
+          !articles.title.includes("Russia", 0) &&
+          !articles.title.includes("Russian", 0) &&
+          !articles.title.includes("mask", 0) &&
+          !articles.title.includes("Covid", 0) &&
+          !articles.title.includes("Covid-19", 0) &&
+          !articles.title.includes("Coronavirus", 0) &&
+          !articles.title.includes("Pandemic", 0) &&
+          !articles.title.includes("pandemic", 0) &&
+          !articles.title.includes("deaths", 0) &&
+          !articles.title.includes("die", 0)
+        );
       });
       return filteredArticles;
     };
@@ -22,7 +37,7 @@ export const gnewsArticles = async () => {
     const allArticles = techArray.concat(scienceArray);
     console.log("allArticles", allArticles);
 
-    console.log("filteredArticles",filterArticles(allArticles));
+    console.log("filteredArticles", filterArticles(allArticles));
     return filterArticles(allArticles);
   } catch (error) {
     console.log(error);

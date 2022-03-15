@@ -15,9 +15,10 @@ import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 // import SingleThought from "./pages/SingleThought";
-// import Profile from "./pages/Profile";
+import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
+import HomeArticles from "./pages/HomeArticles";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -45,10 +46,11 @@ function App() {
         <div className="container-fluid d-flex flex-column min-vh-100">
           <Header />
             <Switch>
-              <Route exact path="/" component={Home} />
+              {/* <Route exact path="/" component={Home} /> */}
+              <Route exact path="/" component={HomeArticles} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              {/* <Route exact path="/profile/:username?" component={Profile} /> */}
+              <Route exact path="/profile/:username?" component={Profile} />
               {/* <Route exact path="/thought/:id" component={SingleThought} /> */}
 
               <Route component={NoMatch} />

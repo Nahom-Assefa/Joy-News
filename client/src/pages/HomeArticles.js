@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { gnewsArticles } from "../utils/API";
+import Auth from "../utils/auth";
 
 function HomeArticles() {
-  // Use this to test if 
+  const loggedIn = Auth.loggedIn();
+  // Use this to test if
   // console.log("process.env",process.env);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,7 +29,7 @@ function HomeArticles() {
         setIsLoaded(true);
         setError(error);
       }
-    ); 
+    );
   }, []);
 
   if (error) {
@@ -36,15 +38,55 @@ function HomeArticles() {
     return <div>Loading...</div>;
   } else {
     return (
-      <>
-        <h1>ARTICLES</h1>
-        <p>read console for data</p>
-        <ul>
+      <main className="row justify-content-evenly">
+        {/* headline article, gets it's own row */}
+        {/* <div key={articles[0].title}> */}
+
+        <h2 className="col-12 d-flex justify-content-center p-3">
+          {articles[0].title}
+        </h2>
+        {/* left side */}
+        <p className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters">
+          {articles[0].description}{" "}
+          <div className="d-flex justify-content-around m-2 mt-auto ">
+            {" "}
+            <button>
+              <a
+                className="pageLinks"
+                href={articles[0].url}
+                target="_blank"
+              >
+                Visit Site
+              </a>
+            </button>
+          </div>
+        </p>
+
+        {/* middle image */}
+        <img
+          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters"
+          src={articles[0].image}
+          alt=""
+        ></img>
+
+        {/* right section */}
+        <p className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters">
+          {articles[0].content} {/* add conditional rendering? */}
+          <button>Save Article</button>
+        </p>
+
+        {/* </div> */}
+        {/* <ul>
           {articles.map((articles) => (
             <li key={articles.title}>{articles.title}</li>
           ))}
-        </ul>
-      </>
+        </ul> */}
+        <section>
+          {articles.map((articles) => (
+            <div key={articles.title}>{articles.title}</div>
+          ))}
+        </section>
+      </main>
     );
   }
 }
