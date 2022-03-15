@@ -48,7 +48,7 @@ function HomeArticles() {
         {/* left side */}
         <p className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters">
           {articles[0].description}{" "}
-          <div className="d-flex justify-content-around m-2 mt-auto ">
+          {/* <div className="d-flex justify-content-around m-2 mt-auto "> */}
             {" "}
             <button>
               <a
@@ -59,7 +59,7 @@ function HomeArticles() {
                 Visit Site
               </a>
             </button>
-          </div>
+          {/* </div> */}
         </p>
 
         {/* middle image */}
