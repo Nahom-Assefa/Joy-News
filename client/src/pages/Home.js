@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_THOUGHTS, QUERY_ME_BASIC } from "../utils/queries";
 // import ThoughtList from "../components/ThoughtList";
 // import FriendList from "../components/FriendList";
 // import ThoughtForm from '../components/ThoughtForm';
 import Auth from "../utils/auth";
+import FetchNews from "../components/FetchNews";
 
 const Home = () => {
   // use useQuery hook to make query request
@@ -17,9 +18,11 @@ const Home = () => {
   const loggedIn = Auth.loggedIn();
 
   return (
-    <main>
+    <>
+      {/* Leave off to avoid extra API calls */}
+      <FetchNews />
 
-    </main>
+    </>
   );
 };
 
