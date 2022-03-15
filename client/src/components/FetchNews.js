@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function FetchNews() {
-  console.log("process.env",process.env);
+  // console.log("process.env",process.env);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [articles, setArticles] = useState([]);
@@ -39,13 +39,12 @@ function FetchNews() {
     return (
       <>
 
-        <ul>
+        {/* <ul>
           {articles.articles.map((articles) => (
             <li key={articles.title}>{articles.title}</li>
           ))}
-        </ul>
+        </ul> */}
 
-        {/* <h1>{articles.totalArticles}</h1> */}
       </>
     );
   }
