@@ -30,15 +30,22 @@ type Article {
 type Mutation {
   login(email: String!, password: String!): Auth
   addUser(username: String!, email: String!, password: String!): Auth
-  savedArticle(title: String!, description: String! url: String! content: String! image:String!):User
+  savedArticle(article: SavedArticleInput): User
+  deleteArticle(articArticleleId: String!): User
   
 }
   type Auth {
     token: ID!
     user: User
   }
+  input SavedArticleInput {
+    content:String
+    description: String
+    articleId: String
+    image: String
+    url: String
+    title: String
+}
 `;
 module.exports = typeDefs;
 
-// create type Article
-// deleteArticle(articleId: articleId): User
