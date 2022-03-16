@@ -16,8 +16,27 @@ export const gnewsArticles = async () => {
           !articles.title.includes("Coronavirus", 0) &&
           !articles.title.includes("Pandemic", 0) &&
           !articles.title.includes("pandemic", 0) &&
+          !articles.title.includes("Vaccine", 0) &&
+          !articles.title.includes("vaccine", 0) &&
+          !articles.title.includes("Vaccinating", 0) &&
+          !articles.title.includes("vaccinating", 0) &&
           !articles.title.includes("deaths", 0) &&
-          !articles.title.includes("die", 0)
+          !articles.title.includes("interest", 0) &&
+          !articles.title.includes("Interest", 0) &&
+          !articles.title.includes(" Un ", 0) &&
+          !articles.title.includes(" un ", 0) &&
+          !articles.title.includes(" en ", 0) &&
+          !articles.title.includes(" En ", 0) &&
+          !articles.title.includes(" que ", 0) &&
+          !articles.title.includes(" Que ", 0) &&
+          !articles.title.includes(" dies ", 0) &&
+          !articles.title.includes(" avec ", 0) &&
+          !articles.title.includes(" Avec ", 0) &&
+          !articles.title.includes(" Les ", 0) &&
+          !articles.title.includes(" les ", 0) &&
+          !articles.title.includes(" de ", 0) &&
+          !articles.title.includes(" De ", 0) &&
+          !articles.title.includes(" die", 0)
         );
       });
       return filteredArticles;

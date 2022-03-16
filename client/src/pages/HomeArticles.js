@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { gnewsArticles } from "../utils/API";
 import Auth from "../utils/auth";
+
+import { gnewsArticles } from "../utils/API";
+import Quotes from "../components/Quotes";
+import SingleArticle from "../pages/SingleArticle";
 
 function HomeArticles() {
   const loggedIn = Auth.loggedIn();
@@ -9,6 +12,39 @@ function HomeArticles() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [articles, setArticles] = useState([]);
+
+  const handleSaveArticle = async (element) => {
+
+    console.log(element);
+  };
+
+  // iterate through next 4 articles
+  const secondRow = () => {
+    let secondArticles = [];
+
+    for (let i = 1; i < 5; i++) {
+      const element = articles[i];
+
+      secondArticles.push(
+        <p  key={articles.title} className="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2 m-2">
+          {element.description}
+          <button>
+            <a
+              className="pageLinks"
+              href={element.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit Site
+            </a>
+          </button>
+          <button onClick={()=>{handleSaveArticle(element)}}>Save Article</button>
+        </p>
+      );
+    }
+
+    return secondArticles;
+  };
 
   // Note: the empty deps array [] means
   // this useEffect will run once
@@ -36,56 +72,56 @@ function HomeArticles() {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
+  // else if conditional to check if an article is selected?
+  // return that article as a component, passing in the index
   } else {
     return (
       <main className="row justify-content-evenly">
-        {/* headline article, gets it's own row */}
-        {/* <div key={articles[0].title}> */}
-
-        <h2 className="col-12 d-flex justify-content-center p-3">
+        {/* headline article */}
+        <h2  key={articles.url} className="col-12 d-flex justify-content-center p-3">
           {articles[0].title}
         </h2>
+
         {/* left side */}
-        <p className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters">
+
+        <p key={articles.title} className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters">
           {articles[0].description}{" "}
-          {/* <div className="d-flex justify-content-around m-2 mt-auto "> */}
-            {" "}
-            <button>
-              <a
-                className="pageLinks"
-                href={articles[0].url}
-                target="_blank"
-              >
-                Visit Site
-              </a>
-            </button>
-          {/* </div> */}
+          <button onClick={()=>{handleSaveArticle(articles[0])}}>
+            <a
+              className="pageLinks"
+              href={articles[0].url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit Site
+            </a>
+          </button>
+          <button>Save Article</button>
         </p>
 
         {/* middle image */}
         <img
-          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters"
+          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4 mb-4 ms-1 card no-gutters"
           src={articles[0].image}
           alt=""
         ></img>
 
         {/* right section */}
-        <p className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters">
-          {articles[0].content} {/* add conditional rendering? */}
-          <button>Save Article</button>
-        </p>
+        <Quotes />
 
-        {/* </div> */}
-        {/* <ul>
-          {articles.map((articles) => (
-            <li key={articles.title}>{articles.title}</li>
-          ))}
-        </ul> */}
-        <section>
+        {/* divider */}
+        <div className="col-12 d-flex justify-content-center">________________________________________________________________________________________________________________</div>
+
+        {/* second row */}
+        {secondRow()}
+
+        <section>{}</section>
+
+        {/* <section>
           {articles.map((articles) => (
             <div key={articles.title}>{articles.title}</div>
           ))}
-        </section>
+        </section> */}
       </main>
     );
   }
