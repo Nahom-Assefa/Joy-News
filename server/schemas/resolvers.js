@@ -76,6 +76,20 @@ const resolvers = {
         "You need to be logged to delete articles!"
       );
     },
+
+    addFriend: async (parent, { friendsId }, context) => {
+      if (context.user) {
+        const addBro = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: {friends: friendsId} },
+          { new: true }
+        );
+        return addBro; 
+      }
+      throw new AuthenticationError(
+        "You need to be logged to add a friend!"
+      );
+    }
   },
 };
 
