@@ -6,16 +6,12 @@ type User {
     username: String
     email: String
     savedArticle: [Article]
-
 }
-
-
 
 type Query {
     me: User
     users: [User]
     user(username: String!): User
-    
 }
 
 type Article {
@@ -25,13 +21,14 @@ type Article {
     url: String
     content: String
     image:String
+    articleId: String
 }
 
 type Mutation {
   login(email: String!, password: String!): Auth
   addUser(username: String!, email: String!, password: String!): Auth
   savedArticle(article: SavedArticleInput): User
-  deleteArticle(articArticleleId: String!): User
+  deleteArticle(articleId: String!): User
   
 }
   type Auth {
