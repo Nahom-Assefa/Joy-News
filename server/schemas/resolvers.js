@@ -63,19 +63,19 @@ const resolvers = {
       );
     },
 
-    // deleteArticle: async (parent, { article }, context) => {
-    //   if (context.user) {
-    //     const removeArticle = await User.findOneAndDelete(
-    //       { _id: context.user._id },
-    //       { $pull: { savedArticle: article } },
-    //       { new: true }
-    //     );
-    //     return removeArticle;
-    //   }
-    //   throw new AuthenticationError(
-    //     "You need to be logged to delete articles!"
-    //   );
-    // },
+    deleteArticle: async (parent, { article }, context) => {
+      if (context.user) {
+        const removeArticle = await User.findOneAndDelete(
+          { _id: context.user._id },
+          { $pull: { savedArticle: article } },
+          { new: true }
+        );
+        return removeArticle;
+      }
+      throw new AuthenticationError(
+        "You need to be logged to delete articles!"
+      );
+    },
   },
 };
 
