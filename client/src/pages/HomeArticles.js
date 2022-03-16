@@ -104,11 +104,7 @@ function HomeArticles() {
           className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters"
         >
           {articles[0].description}{" "}
-          <button
-            onClick={() => {
-              handleSaveArticle(articles[0]);
-            }}
-          >
+          <button>
             <a
               key={articles[0].url}
               className="pageLinks"
@@ -119,7 +115,13 @@ function HomeArticles() {
               Visit Site
             </a>
           </button>
-          <button>Save Article</button>
+          <button
+            onClick={() => {
+              handleSaveArticle(articles[0]);
+            }}
+          >
+            Save Article
+          </button>
         </p>
 
         {/* middle image */}

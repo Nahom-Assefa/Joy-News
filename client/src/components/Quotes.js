@@ -10,7 +10,7 @@ function Quotes () {
 
   return (
     <div className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters">
-    <h3>Positive Quote of the Day</h3>
+    <h3><strong>Positive Quote of the Day</strong></h3>
     <p className="">{randomQuote()}</p>
   </div>
   )
