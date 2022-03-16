@@ -14,7 +14,6 @@ function HomeArticles() {
   const [articles, setArticles] = useState([]);
 
   const handleSaveArticle = async (element) => {
-
     console.log(element);
   };
 
@@ -26,10 +25,17 @@ function HomeArticles() {
       const element = articles[i];
 
       secondArticles.push(
-        <p  key={articles.title} className="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2 m-2">
+        <p
+          key={element.title}
+          className="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2 m-2"
+        >
+          <strong>{element.title}</strong>
+          <br />
           {element.description}
+          <br />
           <button>
             <a
+              key={element.url}
               className="pageLinks"
               href={element.url}
               target="_blank"
@@ -38,7 +44,13 @@ function HomeArticles() {
               Visit Site
             </a>
           </button>
-          <button onClick={()=>{handleSaveArticle(element)}}>Save Article</button>
+          <button
+            onClick={() => {
+              handleSaveArticle(element);
+            }}
+          >
+            Save Article
+          </button>
         </p>
       );
     }
@@ -72,22 +84,33 @@ function HomeArticles() {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
-  // else if conditional to check if an article is selected?
-  // return that article as a component, passing in the index
+    // else if conditional to check if an article is selected?
+    // return that article as a component, passing in the index
   } else {
     return (
       <main className="row justify-content-evenly">
         {/* headline article */}
-        <h2  key={articles.url} className="col-12 d-flex justify-content-center p-3">
+        <h2
+          key={articles[0].title}
+          className="col-12 d-flex justify-content-center p-3"
+        >
           {articles[0].title}
         </h2>
 
         {/* left side */}
 
-        <p key={articles.title} className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters">
+        <p
+          key={articles.description}
+          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters"
+        >
           {articles[0].description}{" "}
-          <button onClick={()=>{handleSaveArticle(articles[0])}}>
+          <button
+            onClick={() => {
+              handleSaveArticle(articles[0]);
+            }}
+          >
             <a
+              key={articles[0].url}
               className="pageLinks"
               href={articles[0].url}
               target="_blank"
@@ -101,6 +124,7 @@ function HomeArticles() {
 
         {/* middle image */}
         <img
+          key={articles.image}
           className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4 mb-4 ms-1 card no-gutters"
           src={articles[0].image}
           alt=""
@@ -110,18 +134,14 @@ function HomeArticles() {
         <Quotes />
 
         {/* divider */}
-        <div className="col-12 d-flex justify-content-center">________________________________________________________________________________________________________________</div>
+        <div className="col-12 d-flex justify-content-center">
+          ________________________________________________________________________________________________________________
+        </div>
 
         {/* second row */}
         {secondRow()}
 
         <section>{}</section>
-
-        {/* <section>
-          {articles.map((articles) => (
-            <div key={articles.title}>{articles.title}</div>
-          ))}
-        </section> */}
       </main>
     );
   }
