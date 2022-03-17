@@ -83,15 +83,31 @@ const resolvers = {
       if (context.user) {
         const addBro = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: {friends: friendsId} },
+          { $addToSet: { friends: friendsId } },
           { new: true }
         );
-        return addBro; 
-        }
-      throw new AuthenticationError(
-        "You need to be logged to add a friend!"
-      );
-    }
+        return addBro;
+      }
+      throw new AuthenticationError("You need to be logged to add a friend!");
+    },
+
+    addComment: async (parent, { articleId, commentText }, context) => {
+      if (context.user) {
+        const plusComment = await User.findOneAndUpdate(
+          { _id: articleId },
+          {
+            $push: {
+              commentText,
+              username: context.user.username,
+            },
+          },
+          { new: true, runValidators: true }
+        );
+
+        return plusComment;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 
