@@ -1,20 +1,36 @@
 import React, { useState, useEffect } from "react";
 import Auth from "../utils/auth";
-
+import { useQuery, useMutation } from "@apollo/client";
+import { SAVE_ARTICLE } from "../utils/mutations";
+import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { gnewsArticles } from "../utils/API";
 import Quotes from "../components/Quotes";
-import SingleArticle from "../pages/SingleArticle";
+// import SingleArticle from "../pages/SingleArticle";
 
 function HomeArticles() {
   const loggedIn = Auth.loggedIn();
+  const userData = useQuery(QUERY_USER);
   // Use this to test if
   // console.log("process.env",process.env);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [articles, setArticles] = useState([]);
+  const [savedArticle] = useMutation(SAVE_ARTICLE);
 
   const handleSaveArticle = async (element) => {
     console.log(element);
+
+    console.log(savedArticle);
+
+    const title = element.title;
+    
+    await savedArticle({
+      variables: {article:title}
+      
+    })
+
+    console.log("savedarticle", savedArticle);
+
   };
 
   // iterate through next 4 articles

@@ -67,3 +67,20 @@ export const ADD_REACTION = gql`
     }
   }
 `;
+/////////////////
+
+export const SAVE_ARTICLE = gql`
+mutation savedArticle($article: SavedArticleInput){
+  savedArticle (article: $article){
+    _id
+    email
+    savedArticle {
+      _id
+      title
+      image
+      url
+      description
+    }
+  }
+}
+`;
