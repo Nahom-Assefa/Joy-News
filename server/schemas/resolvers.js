@@ -15,10 +15,12 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
       // throw new AuthenticationError('Not logged in');
     },
+
     users: async () => {
       return User.find().select("-__v -password");
       // .populate("savedArticle");
     },
+
     user: async (parent, { username }) => {
       return User.findOne({ username }).select("-__v -password");
       // .populate("savedArticle");
@@ -85,7 +87,7 @@ const resolvers = {
           { new: true }
         );
         return addBro; 
-      }
+        }
       throw new AuthenticationError(
         "You need to be logged to add a friend!"
       );

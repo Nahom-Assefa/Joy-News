@@ -28,7 +28,7 @@ type Article {
 type Mutation {
   login(email: String!, password: String!): Auth
   addUser(username: String!, email: String!, password: String!): Auth
-  addFriend(friendId: ID!): User
+  addFriend(friendsId: ID!): User
   savedArticle(article: SavedArticleInput): User
   deleteArticle(articleId: String!): User 
 }
