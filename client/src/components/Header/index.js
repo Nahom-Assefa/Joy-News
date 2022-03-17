@@ -13,22 +13,24 @@ const Header = () => {
       <nav className="offset-10 col-2">
         {Auth.loggedIn() ? (
           <>
-            <Link to="/profile">Profile</Link>
-            <a href="/" onClick={logout}>
-              Logout
+            <Link className="pageLinks" to="/profile"> Profile </Link>
+            <a className="pageLinks" href="/" onClick={logout}>
+              Logout 
             </a>
           </>
         ) : (
           <>
-            <Link className="pageLinks" to="/login">Login</Link>
-            <Link to="/signup">Signup</Link>
+            <Link className="pageLinks" to="/login"> Login </Link>
+            <Link className="pageLinks" to="/signup"> Signup </Link>
           </>
         )}
       </nav>
 
       <Link to="/" className="offset-4 col-4">
-        <h1 className="oldFont col-12 d-flex justify-content-center p-3">Joy News</h1>
+        <h1 className="pageLinks oldFont col-12 d-flex justify-content-center">Joy News</h1>
       </Link>
+      <div className="col-12 d-flex justify-content-center">________________________________________________________________________________________________________________</div>
+      <div className="col-12 d-flex justify-content-center">________________________________________________________________________________________________________________</div>
     </header>
   );
 };
