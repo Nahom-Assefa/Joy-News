@@ -6,6 +6,7 @@ type User {
     username: String
     email: String
     savedArticle: [Article]
+    friends: [User]
 }
 
 type Query {
@@ -27,14 +28,16 @@ type Article {
 type Mutation {
   login(email: String!, password: String!): Auth
   addUser(username: String!, email: String!, password: String!): Auth
+  addFriend(friendsId: ID!): User
   savedArticle(article: SavedArticleInput): User
-  deleteArticle(articleId: String!): User
-  
+  deleteArticle(articleId: String!): User 
 }
+
   type Auth {
     token: ID!
     user: User
   }
+
   input SavedArticleInput {
     content:String
     description: String
