@@ -54,8 +54,9 @@ const Profile = () => {
           Viewing {userParam ? `${user.username}'s` : "your"} profile.
         </h2>
         <h2>profile</h2>
-        <h2>{user.username}</h2>
-        <h2>{user.email}</h2>
+        <h2>Username: {user.username}</h2>
+        <h2>Email: {user.email}</h2>
+        <h2>ID: {user._id}</h2>
         <h2>{user.savedArticle}</h2>
         {/* {userParam && (
           <button className="btn ml-auto" onClick={handleClick}>

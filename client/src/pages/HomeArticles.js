@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Auth from "../utils/auth";
+import { Redirect, useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { SAVE_ARTICLE } from "../utils/mutations";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
@@ -8,9 +9,16 @@ import Quotes from "../components/Quotes";
 // import SingleArticle from "../pages/SingleArticle";
 
 function HomeArticles() {
-  const loggedIn = Auth.loggedIn();
-  const userData = useQuery(QUERY_USER);
-  // Use this to test if
+  // Check if logged in true or false with Auth.loggedIn();
+  const { username: userParam } = useParams();
+
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
+  });
+
+  const user = data?.me || data?.user || {};
+
+  // Use this to test if .env works
   // console.log("process.env",process.env);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -19,21 +27,13 @@ function HomeArticles() {
 
   const handleSaveArticle = async (element) => {
     console.log(element);
-
-    console.log(savedArticle);
-
-    const title = element.title;
-    
-    await savedArticle({
-      variables: {article:title}
-      
-    })
-
-    console.log("savedarticle", savedArticle);
-
+    console.log("user.username:", user.username);
+    console.log("user.email:", user.email);
+    console.log("user._id:", user._id);
+    console.log("user.savedArticle:", user.savedArticle);
   };
 
-  // iterate through next 4 articles
+  // Iterate through next 4 articles
   const secondRow = () => {
     let secondArticles = [];
 
@@ -43,7 +43,7 @@ function HomeArticles() {
       secondArticles.push(
         <p
           key={element.title}
-          className="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2 m-2"
+          className="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2 m-2 m-3"
         >
           <strong>{element.title}</strong>
           <br />
@@ -105,6 +105,12 @@ function HomeArticles() {
   } else {
     return (
       <main className="row justify-content-evenly">
+        {/* test zone */}
+        {/* <h2>Username: {user.username}</h2>
+        <h2>Email: {user.email}</h2>
+        <h2>ID: {user._id}</h2> */}
+        {/* test zone */}
+
         {/* headline article */}
         <h2
           key={articles[0].title}
@@ -114,13 +120,12 @@ function HomeArticles() {
         </h2>
 
         {/* left side */}
-
         <p
           key={articles.description}
           className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters"
         >
           {articles[0].description}{" "}
-          <button>
+          <button className="m-1">
             <a
               key={articles[0].url}
               className="pageLinks"
@@ -132,6 +137,7 @@ function HomeArticles() {
             </a>
           </button>
           <button
+           className="m-1"
             onClick={() => {
               handleSaveArticle(articles[0]);
             }}
