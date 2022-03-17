@@ -122,7 +122,7 @@ function HomeArticles() {
         {/* left side */}
         <p
           key={articles.description}
-          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters"
+          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 no-gutters"
         >
           {articles[0].description}{" "}
           <button className="m-1">
@@ -149,7 +149,7 @@ function HomeArticles() {
         {/* middle image */}
         <img
           key={articles.image}
-          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4 mb-4 ms-1 card no-gutters"
+          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4 mb-4 ms-1 no-gutters"
           src={articles[0].image}
           alt=""
         ></img>
