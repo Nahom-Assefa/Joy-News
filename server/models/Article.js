@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const commentSchema = require('./Comment');
 
 const articleSchema = new Schema({
   title: {
@@ -16,8 +17,10 @@ const articleSchema = new Schema({
   image: {
     type: String,
   },
+
+  comments: [commentSchema]
 });
 
 
 
-module.exports=articleSchema
+module.exports = articleSchema

@@ -21,8 +21,14 @@ type Article {
     description: String
     url: String
     content: String
-    image:String
-    articleId: String
+    image: String
+}
+
+type Comment {
+  _id: ID
+  commentText: String
+  createdAt: String
+  username: String
 }
 
 type Mutation {
@@ -30,7 +36,8 @@ type Mutation {
   addUser(username: String!, email: String!, password: String!): Auth
   addFriend(friendsId: ID!): User
   savedArticle(article: SavedArticleInput): User
-  deleteArticle(articleId: String!): User 
+  deleteArticle(articleId: ID!): User 
+  addComment(articleId: ID!, commentText: String!): Article
 }
 
   type Auth {
