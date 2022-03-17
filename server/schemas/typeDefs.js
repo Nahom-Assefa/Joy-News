@@ -22,6 +22,7 @@ type Article {
     url: String
     content: String
     image: String
+    comments: [Comment]
 }
 
 type Comment {
