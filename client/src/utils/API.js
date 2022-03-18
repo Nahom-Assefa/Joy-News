@@ -15,6 +15,7 @@ export const gnewsArticles = async () => {
           !articles.title.includes("Mask", 0) &&
           !articles.title.includes("covid", 0) &&
           !articles.title.includes("Covid", 0) &&
+          !articles.title.includes("COVID", 0) &&
           !articles.title.includes("Covid-19", 0) &&
           !articles.title.includes("COVID-19", 0) &&
           !articles.title.includes("Coronavirus", 0) &&

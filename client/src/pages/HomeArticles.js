@@ -35,8 +35,11 @@ function HomeArticles() {
     /////////
     saveArticle({
       variables: {
+        title: element.title,
         content: element.content,
         description: element.description,
+        image: element.image,
+        url: element.url
       },
     });
   };
