@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Article = require("../models/Article");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 
@@ -51,18 +52,22 @@ const resolvers = {
       return { token, user };
     },
 
-    savedArticle: async (parent, { article }, context) => {
+    savedArticle: async (parent, args, context) => {
       if (context.user) {
-        const updateUser = await User.findOneAndUpdate(
+        const article = await Article.create({
+          ...args,
+        });
+
+        await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedArticle: article } },
+          { $push: { articles: article._id } },
           { new: true }
         );
-        return updateUser;
+
+        return article;
       }
-      throw new AuthenticationError(
-        "You need to be logged in to save articles!"
-      );
+
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     deleteArticle: async (parent, { article }, context) => {
@@ -83,15 +88,32 @@ const resolvers = {
       if (context.user) {
         const addBro = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: {friends: friendsId} },
+          { $addToSet: { friends: friendsId } },
           { new: true }
+        ).populate("friends");
+
+        return addBro;
+      }
+      throw new AuthenticationError("You need to be logged to add a friend!");
+    },
+
+    addComment: async (parent, { articleId, commentText }, context) => {
+      if (context.user) {
+        const plusComment = await User.findOneAndUpdate(
+          { _id: articleId },
+          {
+            $push: {
+              commentText,
+              username: context.user.username,
+            },
+          },
+          { new: true, runValidators: true }
         );
-        return addBro; 
-        }
-      throw new AuthenticationError(
-        "You need to be logged to add a friend!"
-      );
-    }
+
+        return plusComment;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 
