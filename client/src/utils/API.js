@@ -7,22 +7,35 @@ export const gnewsArticles = async () => {
           !articles.title.includes("invasion", 0) &&
           !articles.title.includes("war", 0) &&
           !articles.title.includes("War", 0) &&
+          !articles.title.includes("WAR", 0) &&
           !articles.title.includes("Ukraine", 0) &&
           !articles.title.includes("Russia", 0) &&
           !articles.title.includes("Russian", 0) &&
           !articles.title.includes("mask", 0) &&
+          !articles.title.includes("Mask", 0) &&
+          !articles.title.includes("covid", 0) &&
           !articles.title.includes("Covid", 0) &&
           !articles.title.includes("Covid-19", 0) &&
+          !articles.title.includes("COVID-19", 0) &&
           !articles.title.includes("Coronavirus", 0) &&
+          !articles.title.includes("Hospitalizations", 0) &&
+          !articles.title.includes("hospitalizations", 0) &&
           !articles.title.includes("Pandemic", 0) &&
           !articles.title.includes("pandemic", 0) &&
           !articles.title.includes("Vaccine", 0) &&
           !articles.title.includes("vaccine", 0) &&
+          !articles.title.includes("Pfizer", 0) &&
+          !articles.title.includes("Moderna", 0) &&
+          !articles.title.includes("Omicron", 0) &&
+          !articles.title.includes("omicron", 0) &&
           !articles.title.includes("Vaccinating", 0) &&
           !articles.title.includes("vaccinating", 0) &&
           !articles.title.includes("deaths", 0) &&
-          !articles.title.includes("interest", 0) &&
-          !articles.title.includes("Interest", 0) &&
+          !articles.title.includes("Deaths", 0) &&
+          !articles.title.includes("Homicide", 0) &&
+          !articles.title.includes("homicide", 0) &&
+          !articles.title.includes(" inflation ", 0) &&
+          !articles.title.includes(" Inflation ", 0) &&
           !articles.title.includes(" Un ", 0) &&
           !articles.title.includes(" un ", 0) &&
           !articles.title.includes(" en ", 0) &&
@@ -36,6 +49,15 @@ export const gnewsArticles = async () => {
           !articles.title.includes(" les ", 0) &&
           !articles.title.includes(" de ", 0) &&
           !articles.title.includes(" De ", 0) &&
+          !articles.title.includes(" ehrt ", 0) &&
+          !articles.title.includes(" Ehrt ", 0) &&
+          !articles.title.includes(" zu ", 0) &&
+          !articles.title.includes(" Zu ", 0) &&
+          !articles.title.includes(" und ", 0) &&
+          !articles.title.includes(" Und ", 0) &&
+          !articles.title.includes(" Sein ", 0) &&
+          !articles.title.includes(" sein ", 0) &&
+          !articles.title.includes(" Und ", 0) &&
           !articles.title.includes(" die", 0)
         );
       });

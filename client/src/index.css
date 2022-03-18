@@ -1,6 +1,4 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap");
-/* @import url("https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Monsieur+La+Doulaise&family=UnifrakturCook:wght@700&display=swap"); */
 
 body {
   margin: 0;
@@ -10,10 +8,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* header {
-  font-family: "Monsieur La Doulaise", cursive;
-  text-decoration: none;
-} */
+button {
+  background-color: white;
+  border-radius: 7px !important;
+}
 
 a {
   text-decoration: none !important;
@@ -21,9 +19,7 @@ a {
 }
 
 .oldFont {
-  /* font-family: 'Berkshire Swash', cursive; */
   font-family: "Monsieur La Doulaise", cursive;
-  /* font-family: 'Fleur De Leah', cursive; */
   text-decoration: none;
   color:black;
 }

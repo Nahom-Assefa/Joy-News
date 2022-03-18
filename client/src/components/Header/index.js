@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
+import dateBuilder from "../../utils/dateBuilder";
 
 const Header = () => {
   const logout = (event) => {
@@ -10,7 +11,8 @@ const Header = () => {
 
   return (
     <header className="row">
-      <nav className="offset-10 col-2">
+      <div className="col-2">{dateBuilder(0)}</div>
+      <nav className="offset-8 col-2">
         {Auth.loggedIn() ? (
           <>
             <Link className="pageLinks" to="/profile"> Profile </Link>

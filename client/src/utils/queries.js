@@ -42,20 +42,20 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      friendCount
-      friends {
-        _id
-        username
-      }
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-        reactionCount
-      }
     }
+    savedArticle {title}
   }
 `;
+
+// export const QUERY_USER = gql`
+//   query user($username: String!) {
+//     user(username: $username) {
+//       _id
+//       username
+//       email
+//     }
+//   }
+// `;
 
 export const QUERY_ME = gql`
   {
@@ -63,23 +63,6 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      friendCount
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-        reactionCount
-        reactions {
-          _id
-          createdAt
-          reactionBody
-          username
-        }
-      }
-      friends {
-        _id
-        username
-      }
     }
   }
 `;
@@ -90,11 +73,8 @@ export const QUERY_ME_BASIC = gql`
       _id
       username
       email
-      friendCount
-      friends {
-        _id
-        username
-      }
     }
   }
 `;
+
+

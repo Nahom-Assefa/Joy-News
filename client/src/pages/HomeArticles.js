@@ -1,23 +1,49 @@
 import React, { useState, useEffect } from "react";
 import Auth from "../utils/auth";
-
+import { Redirect, useParams } from "react-router-dom";
+import { useQuery, useMutation } from "@apollo/client";
+import { SAVE_ARTICLE } from "../utils/mutations";
+import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { gnewsArticles } from "../utils/API";
 import Quotes from "../components/Quotes";
-import SingleArticle from "../pages/SingleArticle";
+// import SingleArticle from "../pages/SingleArticle";
 
 function HomeArticles() {
-  const loggedIn = Auth.loggedIn();
-  // Use this to test if
-  // console.log("process.env",process.env);
+  // Check if logged in true or false with Auth.loggedIn();
+  const { username: userParam } = useParams();
+
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
+  });
+
+  const user = data?.me || data?.user || {};
+
+  // Use this to test if .env works console.log("process.env",process.env);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [articles, setArticles] = useState([]);
+  ///////
+  const [
+    saveArticle,
+    { saveArticleData, saveArticleLoading, saveArticleError },
+  ] = useMutation(SAVE_ARTICLE);
 
   const handleSaveArticle = async (element) => {
     console.log(element);
+    console.log("user.username:", user.username);
+    console.log("user.email:", user.email);
+    console.log("user._id:", user._id);
+    console.log("user.savedArticle:", user.savedArticle);
+    /////////
+    saveArticle({
+      variables: {
+        content: element.content,
+        description: element.description,
+      },
+    });
   };
 
-  // iterate through next 4 articles
+  // Iterate through next 4 articles
   const secondRow = () => {
     let secondArticles = [];
 
@@ -27,7 +53,7 @@ function HomeArticles() {
       secondArticles.push(
         <p
           key={element.title}
-          className="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2 m-2"
+          className="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2 m-2 m-3"
         >
           <strong>{element.title}</strong>
           <br />
@@ -98,13 +124,13 @@ function HomeArticles() {
         </h2>
 
         {/* left side */}
-
         <p
           key={articles.description}
-          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 card no-gutters"
+          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 no-gutters"
         >
-          {articles[0].description}{" "}
-          <button>
+          {articles[0].description}
+          <br />
+          <button className="m-1">
             <a
               key={articles[0].url}
               className="pageLinks"
@@ -116,6 +142,7 @@ function HomeArticles() {
             </a>
           </button>
           <button
+            className="m-1"
             onClick={() => {
               handleSaveArticle(articles[0]);
             }}
@@ -127,7 +154,7 @@ function HomeArticles() {
         {/* middle image */}
         <img
           key={articles.image}
-          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4 mb-4 ms-1 card no-gutters"
+          className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4 mb-4 ms-1 no-gutters"
           src={articles[0].image}
           alt=""
         ></img>

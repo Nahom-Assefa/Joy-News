@@ -67,3 +67,13 @@ export const ADD_REACTION = gql`
     }
   }
 `;
+/////////////////
+
+export const SAVE_ARTICLE = gql`
+mutation savedArticle($content: String!, $description: String!){
+  savedArticle (content: $content, description: $description){
+      content
+      description
+  }
+}
+`;
