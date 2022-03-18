@@ -34,8 +34,8 @@ export const gnewsArticles = async () => {
           !articles.title.includes("Deaths", 0) &&
           !articles.title.includes("Homicide", 0) &&
           !articles.title.includes("homicide", 0) &&
-          !articles.title.includes("interest", 0) &&
-          !articles.title.includes("Interest", 0) &&
+          !articles.title.includes(" inflation ", 0) &&
+          !articles.title.includes(" Inflation ", 0) &&
           !articles.title.includes(" Un ", 0) &&
           !articles.title.includes(" un ", 0) &&
           !articles.title.includes(" en ", 0) &&
@@ -49,6 +49,15 @@ export const gnewsArticles = async () => {
           !articles.title.includes(" les ", 0) &&
           !articles.title.includes(" de ", 0) &&
           !articles.title.includes(" De ", 0) &&
+          !articles.title.includes(" ehrt ", 0) &&
+          !articles.title.includes(" Ehrt ", 0) &&
+          !articles.title.includes(" zu ", 0) &&
+          !articles.title.includes(" Zu ", 0) &&
+          !articles.title.includes(" und ", 0) &&
+          !articles.title.includes(" Und ", 0) &&
+          !articles.title.includes(" Sein ", 0) &&
+          !articles.title.includes(" sein ", 0) &&
+          !articles.title.includes(" Und ", 0) &&
           !articles.title.includes(" die", 0)
         );
       });

@@ -18,12 +18,15 @@ function HomeArticles() {
 
   const user = data?.me || data?.user || {};
 
-  // Use this to test if .env works
-  // console.log("process.env",process.env);
+  // Use this to test if .env works console.log("process.env",process.env);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [articles, setArticles] = useState([]);
-  const [savedArticle] = useMutation(SAVE_ARTICLE);
+  ///////
+  const [
+    saveArticle,
+    { saveArticleData, saveArticleLoading, saveArticleError },
+  ] = useMutation(SAVE_ARTICLE);
 
   const handleSaveArticle = async (element) => {
     console.log(element);
@@ -31,6 +34,13 @@ function HomeArticles() {
     console.log("user.email:", user.email);
     console.log("user._id:", user._id);
     console.log("user.savedArticle:", user.savedArticle);
+    /////////
+    saveArticle({
+      variables: {
+        content: element.content,
+        description: element.description,
+      },
+    });
   };
 
   // Iterate through next 4 articles
@@ -105,12 +115,6 @@ function HomeArticles() {
   } else {
     return (
       <main className="row justify-content-evenly">
-        {/* test zone */}
-        {/* <h2>Username: {user.username}</h2>
-        <h2>Email: {user.email}</h2>
-        <h2>ID: {user._id}</h2> */}
-        {/* test zone */}
-
         {/* headline article */}
         <h2
           key={articles[0].title}
@@ -124,7 +128,8 @@ function HomeArticles() {
           key={articles.description}
           className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 no-gutters"
         >
-          {articles[0].description}{" "}
+          {articles[0].description}
+          <br />
           <button className="m-1">
             <a
               key={articles[0].url}
@@ -137,7 +142,7 @@ function HomeArticles() {
             </a>
           </button>
           <button
-           className="m-1"
+            className="m-1"
             onClick={() => {
               handleSaveArticle(articles[0]);
             }}

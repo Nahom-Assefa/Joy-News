@@ -70,16 +70,10 @@ export const ADD_REACTION = gql`
 /////////////////
 
 export const SAVE_ARTICLE = gql`
-mutation savedArticle($article: SavedArticleInput){
-  savedArticle (article: $article){
-    username
-    savedArticle {
-      _id
-      title
-      image
-      url
+mutation savedArticle($content: String!, $description: String!){
+  savedArticle (content: $content, description: $description){
+      content
       description
-    }
   }
 }
 `;
