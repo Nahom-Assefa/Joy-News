@@ -10,11 +10,13 @@ import Auth from "../utils/auth";
 
 const Profile = () => {
   // gets username from url?
-  const { username: userParam } = useParams();
+  // const { username: userParam } = useParams();
+  const { _id: userParam } = useParams();
   //   const [addFriend] = useMutation(ADD_FRIEND);
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
+    // variables: { username: userParam },
+    variables: { _id: userParam },
   });
 
   const user = data?.me || data?.user || {};
@@ -57,7 +59,8 @@ const Profile = () => {
         <h2>Username: {user.username}</h2>
         <h2>Email: {user.email}</h2>
         <h2>ID: {user._id}</h2>
-        <h2>{user.savedArticle}</h2>
+        <h2>Aritcle0: {user.articles[0]._id}</h2>
+        <h2>Friend{user.friends[0]._id}</h2>
         {/* {userParam && (
           <button className="btn ml-auto" onClick={handleClick}>
             Add Friend
