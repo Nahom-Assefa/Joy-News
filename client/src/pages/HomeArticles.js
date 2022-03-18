@@ -24,8 +24,7 @@ function HomeArticles() {
   const [articles, setArticles] = useState([]);
   ///////
   const [
-    saveArticle,
-    { saveArticleData, saveArticleLoading, saveArticleError },
+    saveArticle
   ] = useMutation(SAVE_ARTICLE);
 
   const handleSaveArticle = async (element) => {
@@ -33,7 +32,7 @@ function HomeArticles() {
     console.log("user.username:", user.username);
     console.log("user.email:", user.email);
     console.log("user._id:", user._id);
-    console.log("user.savedArticle:", user.savedArticle);
+    console.log("user.articles:", user.articles);
     /////////
     saveArticle({
       variables: {
@@ -53,7 +52,7 @@ function HomeArticles() {
       secondArticles.push(
         <p
           key={element.title}
-          className="col-5 col-sm-5 col-md-5 col-lg-2 col-xl-2 m-2 m-3"
+          className="col-8 col-sm-8 col-md-6 col-lg-2 col-xl-2 m-2 m-3"
         >
           <strong>{element.title}</strong>
           <br />
