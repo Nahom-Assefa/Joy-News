@@ -12,7 +12,7 @@ type User {
 type Query {
     me: User
     users: [User]
-    user(username: String!): User
+    user(_id: ID!): User
 }
 
 type Article {
