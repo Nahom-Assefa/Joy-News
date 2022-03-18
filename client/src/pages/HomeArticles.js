@@ -23,9 +23,7 @@ function HomeArticles() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [articles, setArticles] = useState([]);
   ///////
-  const [
-    saveArticle
-  ] = useMutation(SAVE_ARTICLE);
+  const [saveArticle] = useMutation(SAVE_ARTICLE);
 
   const handleSaveArticle = async (element) => {
     console.log(element);
@@ -33,6 +31,7 @@ function HomeArticles() {
     console.log("user.email:", user.email);
     console.log("user._id:", user._id);
     console.log("user.articles:", user.articles);
+    console.log("user.friends:", user.friends);
     /////////
     saveArticle({
       variables: {

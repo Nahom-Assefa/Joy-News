@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_THOUGHTS = gql`
   query thoughts($username: String) {
@@ -36,17 +36,6 @@ export const QUERY_THOUGHT = gql`
   }
 `;
 
-export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
-      _id
-      username
-      email
-    }
-    savedArticle {title}
-  }
-`;
-
 // export const QUERY_USER = gql`
 //   query user($username: String!) {
 //     user(username: $username) {
@@ -54,8 +43,33 @@ export const QUERY_USER = gql`
 //       username
 //       email
 //     }
+//     articles {title}
 //   }
 // `;
+
+/////// works in back end
+// export const QUERY_USER = gql`
+// query user($_id: ID!) {
+//   user(_id: $_id) {
+//     _id
+//     username
+//     email
+// articles {
+//   title
+//   content
+// }
+//   }
+//  `;
+
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+    }
+  }
+`;
 
 export const QUERY_ME = gql`
   {
@@ -63,6 +77,14 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      friends {
+        _id
+      }
+      articles {
+        _id
+        content
+        description
+      }
     }
   }
 `;
@@ -76,5 +98,3 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
-
-
