@@ -22,9 +22,9 @@ const resolvers = {
       // .populate("savedArticle");
     },
 
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).select("-__v -password");
-      // .populate("savedArticle");
+    // finding a single user by Id
+    user: async (parent, { _id }) => {
+      return User.findOne({ _id }).populate("articles");
     },
   },
   Mutation: {
