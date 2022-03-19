@@ -57,6 +57,7 @@ const [deleteArticle]=useMutation(DELETE_ARTICLE)
     <main className="row justify-content-evenly">
       <h2 className="col-12 d-flex justify-content-center p-3">
         Viewing {userParam ? `${user.username}'s` : "your"} profile.
+        {console.log(user.username, 'username')}
       </h2>
 
       {/* <h2>Username: {user.username}</h2>
