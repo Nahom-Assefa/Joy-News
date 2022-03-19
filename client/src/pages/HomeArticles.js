@@ -4,7 +4,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { SAVE_ARTICLE } from "../utils/mutations";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import { gnewsArticles } from "../utils/API";
+import { gnewsArticles, newsArticles } from "../utils/API";
 import Quotes from "../components/Quotes";
 // import SingleArticle from "../pages/SingleArticle";
 
@@ -32,16 +32,19 @@ function HomeArticles() {
     console.log("user._id:", user._id);
     console.log("user.articles:", user.articles);
     console.log("user.friends:", user.friends);
-    /////////
+
     saveArticle({
       variables: {
+        title: element.title,
         content: element.content,
         description: element.description,
+        image: element.image,
+        url: element.url,
       },
     });
   };
 
-  // Iterate through next 4 articles
+  // Return next 4 articles
   const secondRow = () => {
     let secondArticles = [];
 
@@ -82,11 +85,64 @@ function HomeArticles() {
     return secondArticles;
   };
 
+  // Return the rest of the articles
+  const thirdRow = () => {
+    let thirdArticles = [];
+
+    for (let i = 5; i < articles.length; i++) {
+      const element = articles[i];
+
+      thirdArticles.push(
+        <div className="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 mb-4 ms-1 no-gutters">
+          <h2 key={element.title} className="col-12">
+            <strong>{element.title}</strong>
+          </h2>
+
+          <img
+            key={element.image}
+            className="col-12 d-flex justify-content-center p-3"
+            src={element.image}
+            alt=""
+          ></img>
+
+          <p
+            key={element.description}
+            className="col-12 justify-content-center p-3"
+          >
+            {element.description}
+
+            <br />
+            <button>
+              <a
+                key={element.url}
+                className="pageLinks"
+                href={element.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Visit Site
+              </a>
+            </button>
+            <button
+              onClick={() => {
+                handleSaveArticle(element);
+              }}
+            >
+              Save Article
+            </button>
+          </p>
+        </div>
+      );
+    }
+
+    return thirdArticles;
+  };
+
   // Note: the empty deps array [] means
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    gnewsArticles().then(
+    newsArticles().then(
       (result) => {
         // setArticles(result);
         // console.log(result);
@@ -165,10 +221,18 @@ function HomeArticles() {
           ________________________________________________________________________________________________________________
         </div>
 
-        {/* second row */}
+        {/* Second row */}
         {secondRow()}
 
-        <section>{}</section>
+        {/* divider */}
+        <div className="col-12 d-flex justify-content-center">
+          ________________________________________________________________________________________________________________
+        </div>
+
+        {/* Third row */}
+        {thirdRow()}
+
+        {/* <section>{}</section> */}
       </main>
     );
   }
