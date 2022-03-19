@@ -67,16 +67,6 @@ export const ADD_REACTION = gql`
     }
   }
 `;
-/////////////////
-
-// export const SAVE_ARTICLE = gql`
-// mutation savedArticle($content: String!, $description: String!){
-//   savedArticle (content: $content, description: $description){
-//       content
-//       description
-//   }
-// }
-// `;
 
 export const SAVE_ARTICLE = gql`
 mutation savedArticle($title: String!, $content: String!, $description: String!, $image: String!, $url: String!){
@@ -89,3 +79,14 @@ mutation savedArticle($title: String!, $content: String!, $description: String!,
   }
 }
 `;
+
+export const DELETE_ARTICLE = gql`
+mutation deleteArticle($articleId: ID!){
+  deleteArticle(articleId: $articleId) {
+    articles {
+    _id
+    }
+  }
+}
+
+`
