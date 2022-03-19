@@ -65,7 +65,9 @@ export const newsArticles = async () => {
           !articles.title.includes(" Sein ", 0) &&
           !articles.title.includes(" sein ", 0) &&
           !articles.title.includes(" Und ", 0) &&
-          !articles.title.includes(" die", 0)
+          !articles.title.includes(" die", 0) &&
+          !articles.title.includes("雪", 0)
+          
         );
       });
       return filteredArticles;
