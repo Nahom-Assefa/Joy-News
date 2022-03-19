@@ -82,8 +82,10 @@ export const QUERY_ME = gql`
       }
       articles {
         _id
+        title
         content
         description
+        image
       }
     }
   }
@@ -98,3 +100,23 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
+
+
+// export const QUERY_ME = gql`
+//   {
+//     me {
+//       _id
+//       username
+//       email
+//       friends {
+//         _id
+//       }
+//       articles {
+//         _id
+//         title
+//         content
+//         description
+//       }
+//     }
+//   }
+// `;
