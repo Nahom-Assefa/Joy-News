@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-// import { DELETE_ARTICLE } from "../utils/mutations";
+import { DELETE_ARTICLE } from "../utils/mutations";
 import Auth from "../utils/auth";
 // import FriendList from "../components/FriendList";
 // import ThoughtList from "../components/ThoughtList";
@@ -21,7 +21,7 @@ const Profile = () => {
   });
 
   const user = data?.me || data?.user || {};
-
+const [deleteArticle]=useMutation(DELETE_ARTICLE)
   // redirect to personal profile page if username is the logged-in user's
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Redirect to="/profile" />;
@@ -42,13 +42,10 @@ const Profile = () => {
 
     const handleDeleteArticle = async (articleId) => {
       console.log('Delete article with ID:', articleId)
-      // try {
-      //   await deleteArticle({
-      //     variables: { id: user._id },
-      //   });
-      // } catch (e) {
-      //   console.error(e);
-      // }
+      deleteArticle({
+        variables: {articleId}
+      })
+ console.log(deleteArticle, 'deleted article')
     };
 
   return (
