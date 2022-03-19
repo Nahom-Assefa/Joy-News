@@ -89,3 +89,19 @@ mutation savedArticle($title: String!, $content: String!, $description: String!,
   }
 }
 `;
+
+export const DELETE_ARTICLE = gql`
+mutation deleteArticle($articleId: ID!){
+  deleteArticle(articleId: $articleId) {
+    _id
+    username
+    mail
+    articles {
+    _id
+    title
+}
+  }
+}
+
+
+`

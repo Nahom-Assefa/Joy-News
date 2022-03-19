@@ -70,11 +70,16 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    deleteArticle: async (parent, { article }, context) => {
+    deleteArticle: async (parent, { articleId }, context) => {
       if (context.user) {
-        const removeArticle = await User.findOneAndDelete(
+       const deletedArticle = await  Article.findByIdAndDelete(articleId )
+          if(!deletedArticle){
+            throw new Error("No Article here")
+          }
+
+        const removeArticle = await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedArticle: article } },
+          { $pull: { articles: articleId } },
           { new: true }
         );
         return removeArticle;
@@ -118,3 +123,30 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+
+
+// deleteDevice({ params }, res) {
+//   Device.findOneAndDelete({ _id: params.deviceId })
+//     .then((dbDeviceData) => {
+//       if (!dbDeviceData) {
+//         return res.json({ message: "No Device associated with this id!" });
+//       }
+//       return User.findOneAndUpdate(
+//         { _id: params.userId },
+//         { $pull: { devices: params.deviceId } },
+//         { new: true }
+//       ).then((dbUserData) => {
+//         if (!dbUserData) {
+//           res.status(404).json({ message: "No User found with this id!" });
+//           return;
+//         }
+//         res.json(dbDeviceData);
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// },
+// };
+
