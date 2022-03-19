@@ -42,10 +42,10 @@ const [deleteArticle]=useMutation(DELETE_ARTICLE)
 
     const handleDeleteArticle = async (articleId) => {
       console.log('Delete article with ID:', articleId)
-      deleteArticle({
+      await deleteArticle({
         variables: {articleId}
       })
- console.log(deleteArticle, 'deleted article')
+      window.location.reload()
     };
 
   return (
