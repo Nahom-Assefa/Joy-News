@@ -36,8 +36,8 @@ type Mutation {
   login(email: String!, password: String!): Auth
   addUser(username: String!, email: String!, password: String!): Auth
   addFriend(friendsId: ID!): User
-  savedArticle(content: String!, description: String!): Article
-  deleteArticle(articleId: ID!): Article 
+  savedArticle(title: String!, content: String!, description: String!, image: String!, url: String!): Article
+  deleteArticle(articleId: ID!): User 
   addComment(articleId: ID!, commentText: String!): Article
 }
 
@@ -57,4 +57,13 @@ module.exports = typeDefs;
 //   image: String
 //   url: String
 //   title: String
+// }
+
+// type Mutation {
+//   login(email: String!, password: String!): Auth
+//   addUser(username: String!, email: String!, password: String!): Auth
+//   addFriend(friendsId: ID!): User
+//   savedArticle(content: String!, description: String!): Article
+//   deleteArticle(articleId: ID!): Article 
+//   addComment(articleId: ID!, commentText: String!): Article
 // }
