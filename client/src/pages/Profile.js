@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
@@ -18,10 +18,15 @@ const Profile = () => {
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     // variables: { username: userParam },
     variables: { _id: userParam },
+    fetchPolicy: 'network-only'
   });
 
   const user = data?.me || data?.user || {};
 const [deleteArticle]=useMutation(DELETE_ARTICLE)
+
+// useEffect(() => {
+
+// }, []);
   // redirect to personal profile page if username is the logged-in user's
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Redirect to="/profile" />;
@@ -65,7 +70,7 @@ const [deleteArticle]=useMutation(DELETE_ARTICLE)
       <h2 className="col-12 d-flex justify-content-center p-3">
         Your saved articles:
       </h2>
-
+      {console.log(user, 'this is userrr')}
         {user.articles.map((articles) => (
 
           <div className="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 mb-4 ms-1 no-gutters">
