@@ -15,9 +15,9 @@ import { Link } from 'react-router-dom';
       {friends.map(friend => (
         <div key={friend._id}>
           <p key={friend.username}>{friend.username}</p>
-        <button className="" key={friend._id}>
+        <button className="pageLinks" key={friend._id}>
           {/* <Link to={`/profile/${friend.username}`}>{friend.username}</Link> */}
-          <Link to={`/profile/${friend._id}`}>Friend ID: {friend._id}</Link>
+          <Link to={`/profile/${friend._id}`} className="pageLinks">Friend ID: {friend._id}</Link>
         </button>
         </div>
       ))}

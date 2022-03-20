@@ -4,7 +4,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { SAVE_ARTICLE } from "../utils/mutations";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import { gnewsArticles, newsArticles } from "../utils/API";
+import { newsArticles } from "../utils/API";
 import Quotes from "../components/Quotes";
 
 function HomeArticles() {
@@ -58,7 +58,7 @@ function HomeArticles() {
           <br />
           {element.description}
           <br />
-          <button className="m-1">
+          <button className="m-1 pageLinks">
             <a
               key={element.url}
               className="pageLinks"
@@ -70,7 +70,7 @@ function HomeArticles() {
             </a>
           </button>
           <button
-           className="m-1"
+           className="m-1 pageLinks"
             onClick={() => {
               handleSaveArticle(element);
             }}
@@ -123,7 +123,7 @@ function HomeArticles() {
               </a>
             </button>
             <button
-
+              className="pageLinks"
               onClick={() => {
                 handleSaveArticle(element);
               }}
@@ -184,7 +184,7 @@ function HomeArticles() {
         >
           {articles[0].description}
           <br />
-          <button className="m-1">
+          <button className="m-1 pageLinks">
             <a
               key={articles[0].url}
               className="pageLinks"
@@ -196,7 +196,7 @@ function HomeArticles() {
             </a>
           </button>
           <button
-            className="m-1"
+            className="m-1 pageLinks"
             onClick={() => {
               handleSaveArticle(articles[0]);
             }}

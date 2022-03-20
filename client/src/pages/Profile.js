@@ -100,7 +100,7 @@ const Profile = () => {
           >
             {articles.description}
             <br />
-            <button className="m-1">
+            <button className="m-1 pageLinks">
               <a
                 key={articles.url}
                 className="pageLinks"
@@ -112,7 +112,7 @@ const Profile = () => {
               </a>
             </button>
             <button
-              className="m-1"
+              className="m-1 pageLinks"
               onClick={() => {
                 handleDeleteArticle(articles._id);
               }}

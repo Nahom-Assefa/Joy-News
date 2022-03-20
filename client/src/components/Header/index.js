@@ -14,18 +14,16 @@ const Header = () => {
       <div className="col-2">
         <strong>{dateBuilder(0)}</strong>
       </div>
-      <nav className="offset-7 col-3">
+      <nav className="offset-7 col-3 d-flex justify-content-end">
         {Auth.loggedIn() ? (
           <>
-            <button className="m-1">
+            <button className="m-1 pageLinks">
               <Link className="pageLinks" to="/profile">
-                {" "}
-                Profile{" "}
+                Profile
               </Link>
             </button>
 
-            <button className="">
-              {" "}
+            <button className="m-1 pageLinks">
               <a className="pageLinks" href="/" onClick={logout}>
                 Logout
               </a>
@@ -33,18 +31,15 @@ const Header = () => {
           </>
         ) : (
           <>
-            <button>
-              {" "}
+            <button className="m-1 pageLinks">
               <Link className="pageLinks" to="/login">
-                {" "}
-                Login{" "}
+                Login
               </Link>
             </button>
 
-            <button>
+            <button className="m-1 pageLinks">
               <Link className="pageLinks" to="/signup">
-                {" "}
-                Signup{" "}
+                Signup
               </Link>
             </button>
           </>
@@ -52,7 +47,7 @@ const Header = () => {
       </nav>
 
       <Link to="/" className="offset-4 col-4">
-        <h1 className="pageLinks oldFont col-12 d-flex justify-content-center">
+        <h1 className="mainHeader oldFont col-12 d-flex justify-content-center">
           Joy News
         </h1>
       </Link>
