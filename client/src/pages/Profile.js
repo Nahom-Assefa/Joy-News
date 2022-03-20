@@ -13,6 +13,7 @@ const Profile = () => {
   // gets username from url?
   // const { username: userParam } = useParams();
   const { _id: userParam } = useParams();
+
   //   const [addFriend] = useMutation(ADD_FRIEND);
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -26,7 +27,7 @@ const Profile = () => {
   const [deleteArticle] = useMutation(DELETE_ARTICLE);
 
   // redirect to personal profile page if username is the logged-in user's
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+  if (Auth.loggedIn() && Auth.getProfile().data._id === userParam) {
     return <Redirect to="/profile" />;
   }
 

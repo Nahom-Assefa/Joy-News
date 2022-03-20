@@ -51,7 +51,7 @@ function App() {
               {/* <Route exact path="/singlearticle" component={singleArticle} /> */}
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              <Route exact path="/profile/:username?" component={Profile} />
+              <Route exact path="/profile/:_id?" component={Profile} />
               <Route exact path="/allusers" component={AllUsers} />
 
               <Route component={NoMatch} />
