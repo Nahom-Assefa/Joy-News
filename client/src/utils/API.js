@@ -12,6 +12,7 @@ export const newsArticles = async () => {
           !articles.title.includes("Putin", 0) &&
           !articles.title.includes("Russia", 0) &&
           !articles.title.includes("Russian", 0) &&
+          !articles.title.includes("Russia-Ukraine", 0) &&
           !articles.title.includes("mask", 0) &&
           !articles.title.includes("Mask", 0) &&
           !articles.title.includes("covid", 0) &&
@@ -43,6 +44,8 @@ export const newsArticles = async () => {
           !articles.title.includes("homicide", 0) &&
           !articles.title.includes(" inflation ", 0) &&
           !articles.title.includes(" Inflation ", 0) &&
+          !articles.title.includes(" gift card ", 0) &&
+          !articles.title.includes(" Gift Card ", 0) &&
           !articles.title.includes(" Un ", 0) &&
           !articles.title.includes(" un ", 0) &&
           !articles.title.includes(" en ", 0) &&
@@ -66,8 +69,9 @@ export const newsArticles = async () => {
           !articles.title.includes(" sein ", 0) &&
           !articles.title.includes(" Und ", 0) &&
           !articles.title.includes(" die", 0) &&
+          !articles.title.includes("η", 0) &&
+          !articles.title.includes("ത", 0) &&
           !articles.title.includes("雪", 0)
-          
         );
       });
       return filteredArticles;

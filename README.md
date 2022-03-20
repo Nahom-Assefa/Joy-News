@@ -1,9 +1,9 @@
 # Joy-News
-News Site with only positive headlines built with MERN stack. Only read the news that brings you joy! A blacklist eliminates all headlines that may get you down. 
+News Site with only positive headlines built with MERN stack. Only read the news that brings you joy! A blacklist eliminates all heavy topics that may get you down. 
 
 Deployment: deployment here
 
-![Joy News Screenshot](./screenshot.png)
+![Joy News Screenshot](./client/public/screenshot.png)
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@ Use "npm install" to install required modules for this application.
 
 ## Usage
 
-Read and scroll through headlines freely as a guest. Select a category to filter your news feed. Create a user if you would like to save headlines to your profile. 
+Read and scroll through headlines freely as a guest. Create a user if you would like to save articles to your profile. Click "Profile" to save articles to your profile. 
 
 ## License
 

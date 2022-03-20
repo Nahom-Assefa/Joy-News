@@ -78,6 +78,7 @@ export const QUERY_ME = gql`
       username
       email
       friends {
+        username
         _id
       }
       articles {
@@ -86,6 +87,7 @@ export const QUERY_ME = gql`
         content
         description
         image
+        url
       }
     }
   }
