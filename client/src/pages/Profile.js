@@ -81,7 +81,7 @@ const Profile = () => {
       {user.articles.map((articles) => (
         <div
           className="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 mb-4 ms-1 no-gutters"
-          key={articles.title}
+          key={articles._id}
         >
           <h2 key={articles.title} className="col-12">
             {articles.title}
