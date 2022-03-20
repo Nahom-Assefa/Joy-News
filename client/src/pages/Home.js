@@ -5,7 +5,6 @@ import { QUERY_THOUGHTS, QUERY_ME_BASIC } from "../utils/queries";
 // import FriendList from "../components/FriendList";
 // import ThoughtForm from '../components/ThoughtForm';
 import Auth from "../utils/auth";
-// import FetchNews from "../components/FetchNews";
 import HomeArticles from "./HomeArticles.js"
 
 const Home = () => {
@@ -21,9 +20,7 @@ const Home = () => {
   return (
     <>
       {/* Leave off to avoid extra API calls */}
-      {/* <FetchNews /> */}
       <HomeArticles />
-
     </>
   );
 };

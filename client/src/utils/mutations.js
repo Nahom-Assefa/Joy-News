@@ -25,18 +25,12 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_FRIEND = gql`
-  mutation addFriend($id: ID!) {
-    addFriend(friendId: $id) {
-      _id
-      username
-      friendCount
-      friends {
-        _id
-        username
-      }
-    }
+mutation addFriend($friendsId: ID!) {
+  addFriend(friendsId: $friendsId) {
+    _id
+    username
   }
-`;
+}`
 
 export const ADD_THOUGHT = gql`
   mutation addThought($thoughtText: String!) {
