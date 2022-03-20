@@ -4,9 +4,8 @@ import { Redirect, useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { SAVE_ARTICLE } from "../utils/mutations";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import { gnewsArticles, newsArticles } from "../utils/API";
+import { newsArticles } from "../utils/API";
 import Quotes from "../components/Quotes";
-// import SingleArticle from "../pages/SingleArticle";
 
 function HomeArticles() {
   // Check if logged in true or false with Auth.loggedIn();
@@ -22,7 +21,6 @@ function HomeArticles() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [articles, setArticles] = useState([]);
-  ///////
   const [saveArticle] = useMutation(SAVE_ARTICLE);
 
   const handleSaveArticle = async (element) => {
@@ -60,7 +58,7 @@ function HomeArticles() {
           <br />
           {element.description}
           <br />
-          <button>
+          <button className="m-1 pageLinks">
             <a
               key={element.url}
               className="pageLinks"
@@ -72,6 +70,7 @@ function HomeArticles() {
             </a>
           </button>
           <button
+           className="m-1 pageLinks"
             onClick={() => {
               handleSaveArticle(element);
             }}
@@ -115,7 +114,7 @@ function HomeArticles() {
             <button>
               <a
                 key={element.url}
-                className="pageLinks"
+                className="pageLinks m-1"
                 href={element.url}
                 target="_blank"
                 rel="noreferrer"
@@ -124,6 +123,7 @@ function HomeArticles() {
               </a>
             </button>
             <button
+              className="pageLinks"
               onClick={() => {
                 handleSaveArticle(element);
               }}
@@ -184,7 +184,7 @@ function HomeArticles() {
         >
           {articles[0].description}
           <br />
-          <button className="m-1">
+          <button className="m-1 pageLinks">
             <a
               key={articles[0].url}
               className="pageLinks"
@@ -196,7 +196,7 @@ function HomeArticles() {
             </a>
           </button>
           <button
-            className="m-1"
+            className="m-1 pageLinks"
             onClick={() => {
               handleSaveArticle(articles[0]);
             }}
