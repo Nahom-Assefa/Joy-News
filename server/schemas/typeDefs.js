@@ -5,17 +5,14 @@ type User {
     _id: ID
     username: String
     email: String
-    savedArticle: [Article]
-
+    articles: [Article]
+    friends: [User]
 }
-
-
 
 type Query {
     me: User
     users: [User]
-    user(username: String!): User
-    
+    user(_id: ID!): User
 }
 
 type Article {
@@ -24,21 +21,49 @@ type Article {
     description: String
     url: String
     content: String
-    image:String
+    image: String
+    comments: [Comment]
+}
+
+type Comment {
+  _id: ID
+  commentText: String
+  createdAt: String
+  username: String
 }
 
 type Mutation {
   login(email: String!, password: String!): Auth
   addUser(username: String!, email: String!, password: String!): Auth
-  savedArticle(title: String!, description: String! url: String! content: String! image:String!):User
-  
+  addFriend(friendsId: ID!): User
+  savedArticle(title: String!, content: String!, description: String!, image: String!, url: String!): Article
+  deleteArticle(articleId: ID!): User 
+  addComment(articleId: ID!, commentText: String!): Article
 }
-  type Auth {
-    token: ID!
-    user: User
-  }
+
+type Auth {
+  token: ID!
+  user: User
+}
+
 `;
 module.exports = typeDefs;
 
-// create type Article
-// deleteArticle(articleId: articleId): User
+// savedArticle(article: savedArticleInput): User
+
+// input savedArticleInput {
+//   content:String
+//   description: String
+//   image: String
+//   url: String
+//   title: String
+// }
+
+// type Mutation {
+//   login(email: String!, password: String!): Auth
+//   addUser(username: String!, email: String!, password: String!): Auth
+//   addFriend(friendsId: ID!): User
+//   savedArticle(content: String!, description: String!): Article
+//   deleteArticle(articleId: ID!): Article 
+//   addComment(articleId: ID!, commentText: String!): Article
+// }
