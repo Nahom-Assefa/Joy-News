@@ -61,6 +61,8 @@ export const newsArticles = async () => {
           !articles.title.includes(" De ", 0) &&
           !articles.title.includes(" ehrt ", 0) &&
           !articles.title.includes(" Ehrt ", 0) &&
+          !articles.title.includes(" das ", 0) &&
+          !articles.title.includes(" mit ", 0) &&
           !articles.title.includes(" zu ", 0) &&
           !articles.title.includes(" Zu ", 0) &&
           !articles.title.includes(" und ", 0) &&

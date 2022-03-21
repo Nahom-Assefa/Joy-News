@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 import dateBuilder from "../../utils/dateBuilder";
@@ -14,9 +14,15 @@ const Header = () => {
       <div className="col-2">
         <strong>{dateBuilder(0)}</strong>
       </div>
-      <nav className="offset-7 col-3 d-flex justify-content-end">
+      <nav className=" col-10 d-flex justify-content-end">
         {Auth.loggedIn() ? (
           <>
+            <button className="m-1 pageLinks">
+              <Link className="pageLinks" to="/allusers">
+                All Users
+              </Link>
+            </button>
+
             <button className="m-1 pageLinks">
               <Link className="pageLinks" to="/profile">
                 Profile
@@ -48,7 +54,7 @@ const Header = () => {
 
       <Link to="/" className="offset-4 col-4">
         <h1 className="mainHeader oldFont col-12 d-flex justify-content-center">
-          Joy News
+          <strong>Joy News</strong>
         </h1>
       </Link>
       <div className="col-12 d-flex justify-content-center">

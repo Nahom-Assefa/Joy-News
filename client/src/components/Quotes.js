@@ -1,6 +1,6 @@
 function Quotes() {
   const randomQuote = () => {
-    const generatedNumber = Math.floor(Math.random() * 3);
+    const generatedNumber = Math.floor(Math.random() * 7);
 
     const quotes = [
       "It always seems impossible until it's done. -Nelson Mandela",

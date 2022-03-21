@@ -6,6 +6,7 @@ import { SAVE_ARTICLE } from "../utils/mutations";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { newsArticles } from "../utils/API";
 import Quotes from "../components/Quotes";
+import Comics from "../components/Comics";
 
 function HomeArticles() {
   // Check if logged in true or false with Auth.loggedIn();
@@ -24,12 +25,12 @@ function HomeArticles() {
   const [saveArticle] = useMutation(SAVE_ARTICLE);
 
   const handleSaveArticle = async (element) => {
-    console.log(element);
-    console.log("user.username:", user.username);
-    console.log("user.email:", user.email);
-    console.log("user._id:", user._id);
-    console.log("user.articles:", user.articles);
-    console.log("user.friends:", user.friends);
+    // console.log(element);
+    // console.log("user.username:", user.username);
+    // console.log("user.email:", user.email);
+    // console.log("user._id:", user._id);
+    // console.log("user.articles:", user.articles);
+    // console.log("user.friends:", user.friends);
 
     saveArticle({
       variables: {
@@ -70,7 +71,7 @@ function HomeArticles() {
             </a>
           </button>
           <button
-           className="m-1 pageLinks"
+            className="m-1 pageLinks"
             onClick={() => {
               handleSaveArticle(element);
             }}
@@ -111,7 +112,7 @@ function HomeArticles() {
             {element.description}
 
             <br />
-            <button>
+            <button className="pageLinks m-1">
               <a
                 key={element.url}
                 className="pageLinks m-1"
@@ -164,12 +165,10 @@ function HomeArticles() {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
-    // else if conditional to check if an article is selected?
-    // return that article as a component, passing in the index
   } else {
     return (
       <main className="row justify-content-evenly">
-        {/* headline article */}
+        {/* Headline article */}
         <h2
           key={articles[0].title}
           className="col-12 d-flex justify-content-center p-3"
@@ -177,7 +176,7 @@ function HomeArticles() {
           {articles[0].title}
         </h2>
 
-        {/* left side */}
+        {/* Left side */}
         <p
           key={articles.description}
           className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-3 mb-4 ms-1 no-gutters"
@@ -205,7 +204,7 @@ function HomeArticles() {
           </button>
         </p>
 
-        {/* middle image */}
+        {/* Middle image */}
         <img
           key={articles.image}
           className="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4 mb-4 ms-1 no-gutters"
@@ -213,26 +212,34 @@ function HomeArticles() {
           alt=""
         ></img>
 
-        {/* right section */}
+        {/* Right section */}
         <Quotes />
 
-        {/* divider */}
-        <div className="col-12 d-flex justify-content-center">
+        {/* Divider */}
+        <div className="col-12 d-flex justify-content-center m-3">
           ________________________________________________________________________________________________________________
         </div>
 
         {/* Second row */}
         {secondRow()}
 
-        {/* divider */}
-        <div className="col-12 d-flex justify-content-center">
+        {/* Divider */}
+        <div className="col-12 d-flex justify-content-center m-3">
+          ________________________________________________________________________________________________________________
+        </div>
+
+        <h3 className="col-12 d-flex justify-content-center m-3">
+          <strong>Today's Comic</strong>
+        </h3>
+        <Comics />
+
+        {/* Divider */}
+        <div className="col-12 d-flex justify-content-center m-3">
           ________________________________________________________________________________________________________________
         </div>
 
         {/* Third row */}
         {thirdRow()}
-
-        {/* <section>{}</section> */}
       </main>
     );
   }
