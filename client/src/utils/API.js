@@ -81,13 +81,13 @@ export const newsArticles = async () => {
     };
 
     const tech = await fetch(
-      `https://gnews.io/api/v4/search?q=technology&token=${process.env.REACT_APP_GNEWSAPI}`
+      `https://gnews.io/api/v4/search?q=technology&token=9919faf414853020ba5e5853ccf8ce53`
     );
     const jsonTech = await tech.json();
     const techArray = jsonTech.articles;
 
     const sports = await fetch(
-      `https://newsapi.org/v2/everything?q=sports&searchin=description,title,content&-Ukraine&-Russia&-Ukraine-Russia&-Putin&-invasion&from=2022-03-14&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWSAPI}`
+      `https://newsapi.org/v2/everything?q=sports&searchin=description,title,content&-Ukraine&-Russia&-Ukraine-Russia&-Putin&-invasion&from=2022-03-14&sortBy=popularity&apiKey=c0faa62c54cf42ed86d4cb9e1248b722`
     );
     const jsonSports = await sports.json();
     const sportsArray = jsonSports.articles;
@@ -100,7 +100,7 @@ export const newsArticles = async () => {
     const techSports = techArray.concat(cleanSportsArray);
 
     const science = await fetch(
-      `https://gnews.io/api/v4/search?q=science&token=${process.env.REACT_APP_GNEWSAPI}`
+      `https://gnews.io/api/v4/search?q=science&token=9919faf414853020ba5e5853ccf8ce53`
     );
     const jsonScience = await science.json();
     const scienceArray = jsonScience.articles;
