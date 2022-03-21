@@ -1,10 +1,6 @@
-// import React, { useEffect } from "react";
-// import { Redirect, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ALL_USERS } from "../utils/queries";
-// import Auth from "../utils/auth";
-// import FriendList from "../components/FriendList";
 import { ADD_FRIEND } from "../utils/mutations";
 
 const AllUsers = () => {
@@ -13,22 +9,22 @@ const AllUsers = () => {
     // fetchPolicy: "network-only",
   });
 
-const [addFriend] = useMutation(ADD_FRIEND);
+  const [addFriend] = useMutation(ADD_FRIEND);
 
-const addPersons = async (friendsId) => {
-    console.log('line 18', friendsId);
-await addFriend({
-    variables: {
-        friendsId
-    }
-})
+  const addPersons = async (friendsId) => {
+    console.log("line 18", friendsId);
+    await addFriend({
+      variables: {
+        friendsId,
+      },
+    });
 
-// if (error) {
-//     throw error
-// }
+    // if (error) {
+    //     throw error
+    // }
 
-console.log('Success!');
-}
+    console.log("Success!");
+  };
 
   console.log(data);
 
@@ -40,14 +36,20 @@ console.log('Success!');
     <main className="row d-flex justify-content-center">
       {data.users.map((user) => (
         <div
-          className="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 mb-4 ms-1 no-gutters"
+          className="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 mb-4 ms-1 no-gutters d-flex justify-content-center"
           key={user._id}
         >
-          <h2 key={user.username} className="col-12 d-flex justify-content-center">
+          <h2
+            key={user.username}
+            className="col-4 d-flex justify-content-center"
+          >
             {user.username}
           </h2>
 
-          <button onClick={() => addPersons(user._id) } className="m-1 pageLinks">
+          <button
+            onClick={() => addPersons(user._id)}
+            className="m-1 pageLinks"
+          >
             Add Friend
           </button>
 
@@ -56,9 +58,8 @@ console.log('Success!');
               View Profile
             </Link>
           </button>
-
         </div>
-      ))} 
+      ))}
     </main>
   );
 };
