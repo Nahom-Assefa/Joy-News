@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { Redirect, useParams } from "react-router-dom";
+// import React, { useEffect } from "react";
+// import { Redirect, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ALL_USERS } from "../utils/queries";
-import Auth from "../utils/auth";
-import FriendList from "../components/FriendList";
+// import Auth from "../utils/auth";
+// import FriendList from "../components/FriendList";
 import { ADD_FRIEND } from "../utils/mutations";
 
 const AllUsers = () => {
@@ -36,23 +37,28 @@ console.log('Success!');
   }
 
   return (
-    <main>
+    <main className="row d-flex justify-content-center">
       {data.users.map((user) => (
         <div
           className="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 mb-4 ms-1 no-gutters"
           key={user._id}
         >
-          <h2 key={user.username} className="col-12">
+          <h2 key={user.username} className="col-12 d-flex justify-content-center">
             {user.username}
           </h2>
 
-          <br />
           <button onClick={() => addPersons(user._id) } className="m-1 pageLinks">
             Add Friend
           </button>
+
+          <button className="m-1 pageLinks" key={user._id}>
+            <Link to={`/profile/${user._id}`} className="pageLinks">
+              View Profile
+            </Link>
+          </button>
+
         </div>
       ))} 
-      <div>shishinee</div>
     </main>
   );
 };

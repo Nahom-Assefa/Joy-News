@@ -24,12 +24,12 @@ function HomeArticles() {
   const [saveArticle] = useMutation(SAVE_ARTICLE);
 
   const handleSaveArticle = async (element) => {
-    console.log(element);
-    console.log("user.username:", user.username);
-    console.log("user.email:", user.email);
-    console.log("user._id:", user._id);
-    console.log("user.articles:", user.articles);
-    console.log("user.friends:", user.friends);
+    // console.log(element);
+    // console.log("user.username:", user.username);
+    // console.log("user.email:", user.email);
+    // console.log("user._id:", user._id);
+    // console.log("user.articles:", user.articles);
+    // console.log("user.friends:", user.friends);
 
     saveArticle({
       variables: {
@@ -111,7 +111,7 @@ function HomeArticles() {
             {element.description}
 
             <br />
-            <button>
+            <button className="pageLinks m-1">
               <a
                 key={element.url}
                 className="pageLinks m-1"

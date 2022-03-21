@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useQuery } from "@apollo/client";
-import { QUERY_THOUGHTS, QUERY_ME_BASIC } from "../utils/queries";
+// import React, { useState } from "react";
+// import { useQuery } from "@apollo/client";
+// import { QUERY_THOUGHTS, QUERY_ME_BASIC } from "../utils/queries";
 // import ThoughtList from "../components/ThoughtList";
 // import FriendList from "../components/FriendList";
 // import ThoughtForm from '../components/ThoughtForm';
@@ -19,7 +19,6 @@ const Home = () => {
 
   return (
     <>
-      {/* Leave off to avoid extra API calls */}
       <HomeArticles />
     </>
   );
