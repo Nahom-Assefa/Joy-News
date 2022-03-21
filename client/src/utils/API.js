@@ -46,6 +46,7 @@ export const newsArticles = async () => {
           !articles.title.includes(" Inflation ", 0) &&
           !articles.title.includes(" gift card ", 0) &&
           !articles.title.includes(" Gift Card ", 0) &&
+          !articles.title.includes(" on sale for ", 0) &&
           !articles.title.includes(" Un ", 0) &&
           !articles.title.includes(" un ", 0) &&
           !articles.title.includes(" en ", 0) &&
