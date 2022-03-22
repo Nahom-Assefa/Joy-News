@@ -1,7 +1,7 @@
 # Joy-News
 News Site with only positive headlines built with MERN stack. Only read the news that brings you joy! A blacklist eliminates all heavy topics that may get you down. 
 
-Deployment: deployment here
+Deployment: https://joynews.herokuapp.com/
 
 ![Joy News Screenshot](./client/public/screenshot.png)
 
@@ -21,7 +21,7 @@ Use "npm install" to install required modules for this application.
 
 ## Usage
 
-Read and scroll through headlines freely as a guest. Create a user if you would like to save articles to your profile. Click "Profile" to save articles to your profile. 
+Read and scroll through headlines freely as a guest. Create a user if you would like to save articles to your profile. Click "Profile" to save articles to your profile. Click "All Users" to make new friends. Visit their profiles to check out their saved articles. Remove friends and saved articles from your profile page. 
 
 ## License
 

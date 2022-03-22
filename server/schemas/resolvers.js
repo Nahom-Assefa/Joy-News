@@ -24,7 +24,7 @@ const resolvers = {
 
     // finding a single user by Id
     user: async (parent, { _id }) => {
-      return User.findOne({ _id }).populate("articles");
+      return User.findOne({ _id }).populate("articles").populate("friends");
     },
   },
   Mutation: {

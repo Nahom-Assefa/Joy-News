@@ -64,11 +64,14 @@ export const QUERY_USER = gql`
       email
       friends {
         username
+        _id
       }
       articles {
         _id
         title
+        description
         content
+        image
         comments{
           _id
           commentText

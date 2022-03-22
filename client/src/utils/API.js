@@ -46,6 +46,7 @@ export const newsArticles = async () => {
           !articles.title.includes(" Inflation ", 0) &&
           !articles.title.includes(" gift card ", 0) &&
           !articles.title.includes(" Gift Card ", 0) &&
+          !articles.title.includes(" on sale for ", 0) &&
           !articles.title.includes(" Un ", 0) &&
           !articles.title.includes(" un ", 0) &&
           !articles.title.includes(" en ", 0) &&
@@ -86,24 +87,18 @@ export const newsArticles = async () => {
     const techArray = jsonTech.articles;
 
     const sports = await fetch(
-      `https://newsapi.org/v2/everything?q=sports&searchin=description,title,content&-Ukraine&-Russia&-Ukraine-Russia&-Putin&-invasion&from=2022-03-14&sortBy=popularity&apiKey=${process.env.REACT_APP_NEWSAPI}`
+      `https://gnews.io/api/v4/search?q=sports&token=${process.env.REACT_APP_GNEWSAPI}`
     );
     const jsonSports = await sports.json();
     const sportsArray = jsonSports.articles;
-    // Adds image property because this API has urlToImage instead of image
-    const cleanSportsArray = sportsArray.map((article) => ({
-      ...article,
-      image: article.urlToImage,
-    }));
-    console.log("cleanSportsArray", cleanSportsArray);
-    const techSports = techArray.concat(cleanSportsArray);
+
+    const techSports = techArray.concat(sportsArray);
 
     const science = await fetch(
       `https://gnews.io/api/v4/search?q=science&token=${process.env.REACT_APP_GNEWSAPI}`
     );
     const jsonScience = await science.json();
     const scienceArray = jsonScience.articles;
-    /// change to sportsArray.concat scienceArray
     const allArticles = techSports.concat(scienceArray);
     console.log("allArticles", allArticles);
 
