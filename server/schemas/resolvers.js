@@ -9,7 +9,7 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id }).select(
           "-__v -password"
-        ).populate("articles").populate("friends");
+        ).populate("articles").populate("friends")
 
         return userData;
       }
@@ -62,7 +62,7 @@ const resolvers = {
           { _id: context.user._id },
           { $push: { articles: article._id } },
           { new: true }
-        );
+        ).populate("comments");
 
         return article;
       }
