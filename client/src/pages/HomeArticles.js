@@ -52,7 +52,7 @@ function HomeArticles() {
 
       secondArticles.push(
         <p
-          key={element.title}
+          key={element.url}
           className="col-8 col-sm-8 col-md-6 col-lg-2 col-xl-2 m-2 m-3"
         >
           <strong>{element.title}</strong>
@@ -93,8 +93,11 @@ function HomeArticles() {
       const element = articles[i];
 
       thirdArticles.push(
-        <div className="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 mb-4 ms-1 no-gutters">
-          <h2 key={element.title} className="col-12">
+        <div
+          className="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 mb-4 ms-1 no-gutters"
+          key={element.publishedAt}
+        >
+          <h2 key={element.publishedAt} className="col-12">
             <strong>{element.title}</strong>
           </h2>
 
@@ -170,7 +173,7 @@ function HomeArticles() {
       <main className="row justify-content-evenly">
         {/* Headline article */}
         <h2
-          key={articles[0].title}
+          key={articles[0].publishedAt}
           className="col-12 d-flex justify-content-center p-3"
         >
           {articles[0].title}
