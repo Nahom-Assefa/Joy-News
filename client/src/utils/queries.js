@@ -64,11 +64,20 @@ export const QUERY_USER = gql`
       email
       friends {
         username
+        _id
       }
       articles {
         _id
         title
+        description
         content
+        image
+        comments{
+          _id
+          commentText
+          username
+          createdAt
+        }
       }
     }
   }
@@ -91,6 +100,12 @@ export const QUERY_ME = gql`
         description
         image
         url
+        comments{
+          _id
+          commentText
+          username
+          createdAt
+        }
       }
     }
   }

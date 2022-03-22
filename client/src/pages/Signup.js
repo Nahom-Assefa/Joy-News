@@ -31,7 +31,7 @@ const Signup = () => {
         variables: { ...formState },
       });
 
-      console.log('data', data);
+      console.log("data", data);
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
@@ -40,8 +40,8 @@ const Signup = () => {
 
   return (
     <main className="row d-flex justify-content-center m-4">
-      <div className="col-6">
-        <h4 className="">Sign Up</h4>
+      <h4 className="col-7 d-flex justify-content-center">Sign Up</h4>
+      <div className="col-6 d-flex justify-content-center">
         <div className="">
           <form onSubmit={handleFormSubmit}>
             <input
@@ -74,9 +74,12 @@ const Signup = () => {
               onChange={handleChange}
             />
             <br />
-            <button className="m-2" type="submit">
-              Submit
-            </button>
+
+            <span className="d-flex justify-content-center">
+              <button className="m-2" type="submit">
+                Submit
+              </button>
+            </span>
           </form>
           {error && <div>Sign up failed</div>}
         </div>

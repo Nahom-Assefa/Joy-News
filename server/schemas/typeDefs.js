@@ -36,9 +36,11 @@ type Mutation {
   login(email: String!, password: String!): Auth
   addUser(username: String!, email: String!, password: String!): Auth
   addFriend(friendsId: ID!): User
+  deleteFriend(friendsId: ID!): User
   savedArticle(title: String!, content: String!, description: String!, image: String!, url: String!): Article
   deleteArticle(articleId: ID!): User 
   addComment(articleId: ID!, commentText: String!): Article
+  deleteComment(articleId: ID!, commentId: ID!): Article
 }
 
 type Auth {
