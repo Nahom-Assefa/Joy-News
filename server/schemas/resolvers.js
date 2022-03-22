@@ -102,14 +102,26 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged to add a friend!");
     },
 
+    deleteFriend: async (parent, { friendsId }, context) => {
+      if (context.user) {
+        const deleteBro = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { friends: friendsId } },
+          { new: true }
+        ).populate("friends");
+
+        return deleteBro;
+      }
+      throw new AuthenticationError("You need to be logged to delete a friend!");
+    },
+
     addComment: async (parent, { articleId, commentText }, context) => {
       if (context.user) {
-        const plusComment = await User.findOneAndUpdate(
+        const plusComment = await Article.findOneAndUpdate(
           { _id: articleId },
           {
             $push: {
-              commentText,
-              username: context.user.username,
+              comments: { commentText, username: context.user.username },
             },
           },
           { new: true, runValidators: true }
@@ -119,34 +131,20 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+
+    deleteComment: async (parent, { articleId, commentId }, context) => {
+      if (context.user) {
+        const minusComment = await Article.findByIdAndUpdate(
+          { _id: articleId },
+          { $pull: { comments: { _id: commentId } } },
+          { new: true }
+        );
+
+        return minusComment;
+      }
+      throw new AuthenticationError("You need to be logged to delete a friend!");
+    }
   },
 };
 
 module.exports = resolvers;
-
-
-// deleteDevice({ params }, res) {
-//   Device.findOneAndDelete({ _id: params.deviceId })
-//     .then((dbDeviceData) => {
-//       if (!dbDeviceData) {
-//         return res.json({ message: "No Device associated with this id!" });
-//       }
-//       return User.findOneAndUpdate(
-//         { _id: params.userId },
-//         { $pull: { devices: params.deviceId } },
-//         { new: true }
-//       ).then((dbUserData) => {
-//         if (!dbUserData) {
-//           res.status(404).json({ message: "No User found with this id!" });
-//           return;
-//         }
-//         res.json(dbDeviceData);
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// },
-// };
-
