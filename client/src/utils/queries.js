@@ -69,6 +69,12 @@ export const QUERY_USER = gql`
         _id
         title
         content
+        comments{
+          _id
+          commentText
+          username
+          createdAt
+        }
       }
     }
   }
@@ -91,6 +97,12 @@ export const QUERY_ME = gql`
         description
         image
         url
+        comments{
+          _id
+          commentText
+          username
+          createdAt
+        }
       }
     }
   }
