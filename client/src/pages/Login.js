@@ -34,8 +34,9 @@ const Login = (props) => {
 
   return (
     <main className="row d-flex justify-content-center m-4">
-      <div className="col-6">
-        <h4 className="">Login</h4>
+      <h4 className="col-7 d-flex justify-content-center">Login</h4>
+
+      <div className="col-6 d-flex justify-content-center">
         <div className="">
           <form onSubmit={handleFormSubmit}>
             <input
@@ -58,9 +59,12 @@ const Login = (props) => {
               onChange={handleChange}
             />
             <br />
-            <button className="m-2" type="submit">
-              Submit
-            </button>
+
+            <span className="d-flex justify-content-center">
+              <button className="m-2" type="submit">
+                Submit
+              </button>
+            </span>
           </form>
           {error && <div>Login failed</div>}
         </div>
