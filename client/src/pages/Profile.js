@@ -1,7 +1,7 @@
 import { Redirect, useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import { DELETE_ARTICLE } from "../utils/mutations";
+import { DELETE_ARTICLE, DELETE_FRIEND } from "../utils/mutations";
 import Auth from "../utils/auth";
 import FriendList from "../components/FriendList";
 
