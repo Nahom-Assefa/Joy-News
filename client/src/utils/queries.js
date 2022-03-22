@@ -91,6 +91,11 @@ export const QUERY_ME = gql`
         description
         image
         url
+        comments{
+          _id
+          commentText
+          username
+        }
       }
     }
   }

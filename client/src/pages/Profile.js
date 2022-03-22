@@ -1,11 +1,15 @@
 import { Redirect, useParams } from "react-router-dom";
+import { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
-import { DELETE_ARTICLE, DELETE_FRIEND } from "../utils/mutations";
+import { ADD_COMMENT, DELETE_ARTICLE } from "../utils/mutations";
 import Auth from "../utils/auth";
 import FriendList from "../components/FriendList";
 
 const Profile = () => {
+  const [commentText, setBody] = useState('');
+  const [characterCount, setCharacterCount] = useState(0);
+const [addComment] = useMutation(ADD_COMMENT)
   const { _id: userParam } = useParams();
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -34,6 +38,31 @@ const Profile = () => {
       </h4>
     );
   }
+  const handleChange = event => {
+    if (event.target.value.length <= 280) {
+      setBody(event.target.value);
+      setCharacterCount(event.target.value.length);
+    }
+  };
+  
+  const handleFormSubmit = async (articleId) => {
+    // event.preventDefault();
+    try {
+      await addComment({
+        variables: { commentText, articleId},
+      });
+      // clear form value
+      setBody('');
+      setCharacterCount(0);
+
+      
+    } catch (error) {
+      console.log(error)
+    }
+
+  };
+
+
 
   const handleDeleteArticle = async (articleId) => {
     console.log("Delete article with ID:", articleId);
@@ -100,6 +129,23 @@ const Profile = () => {
               Delete Article
             </button>
           </p>
+          <form
+            className="flex-row justify-center justify-space-between-md align-stretch"
+            // onSubmit={handleFormSubmit}
+            onSubmit={()=>{
+              handleFormSubmit(articles._id, commentText)
+            }}
+          >
+            <textarea
+              placeholder="Here's a new comment..."
+              value={commentText}
+              className="form-input col-12 col-md-9"
+              onChange={handleChange}
+            ></textarea>
+            <button className="btn col-12 col-md-3" type="submit">
+              Submit
+            </button>
+          </form>
         </div>
       ))}
     </main>
