@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { DELETE_COMMENT } from "../../utils/mutations";
 
-const CommentList = ({ comments, articleId }) => {
+const CommentList = ({ comments, articleId,userId }) => {
   const [deleteComment, { error }] = useMutation(DELETE_COMMENT);
 
   const handleDeleteComment = async (commentId) => {
@@ -25,7 +25,7 @@ const CommentList = ({ comments, articleId }) => {
               {comment.commentText} <br />
               {"by "} {comment.username}
               &nbsp;on {comment.createdAt}
-              <span className="d-flex justify-content-center">
+              <span className="d-flex justify-content-start">
                 <button
                   className="pageLinks"
                   onClick={() => {
@@ -35,14 +35,14 @@ const CommentList = ({ comments, articleId }) => {
                   Delete
                 </button>
                 &nbsp;&nbsp;&nbsp;
-                <button className="pageLinks">
+                {/* <button className="pageLinks">
                   <Link
                     className="pageLinks"
-                    to={`/profile/${comment.username}`}
+                    to={`/profile/${userId}`}
                   >
                     {comment.username}
                   </Link>
-                </button>
+                </button> */}
               </span>
             </p>
           ))}
