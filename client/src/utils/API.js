@@ -84,16 +84,6 @@ export const newsArticles = async () => {
       return filteredArticles;
     };
 
-    // const filterDuplicates = (articles) => {
-    //   let results = [];
-    //   for (let i = 0; i < articles.length; i++) {
-    //     if (!results.includes(articles[i].title)) {
-    //       results.push(articles[i]);
-    //     }
-    //   }
-    //   console.log("remove duplicates", results);
-    //   return results;
-    // };
     const filterDuplicates = (articles) => {
       const titles = articles.map((o) => o.title);
       const filtered = articles.filter(
