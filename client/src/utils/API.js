@@ -85,15 +85,13 @@ export const newsArticles = async () => {
     };
 
     const filterDuplicates = (articles) => {
-      let results = [];
-      for (let i = 0; i < articles.length; i++) {
-        if (!results.includes(articles[i].title)) {
-          results.push(articles[i]);
-        }
-      }
-      console.log("remove duplicates", results);
-      return results;
-    };
+      const titles = articles.map((o) => o.title);
+      const filtered = articles.filter(
+        ({ title }, index) => !titles.includes(title, index + 1)
+      );
+    console.log("filtered duplicates", filtered);
+    return filtered;
+  }
 
     const tech = await fetch(
       `https://gnews.io/api/v4/search?q=technology&token=${process.env.REACT_APP_GNEWSAPI}`
