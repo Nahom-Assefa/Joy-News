@@ -129,7 +129,7 @@ const Profile = () => {
               </button>
             </span>
           </p>
-          <CommentList comments={articles.comments} articleId={articles._id} />
+          <CommentList comments={articles.comments} articleId={articles._id}  />
           <p>
             Characters Left:{" "}
             <span className="text-danger">{characterCount}</span>
