@@ -9,17 +9,15 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id }).select(
           "-__v -password"
-        ).populate("articles").populate("friends");
+        ).populate("articles").populate("friends")
 
         return userData;
       }
       throw new AuthenticationError("Not logged in");
-      // throw new AuthenticationError('Not logged in');
     },
 
     users: async () => {
       return User.find().select("-__v -password");
-      // .populate("savedArticle");
     },
 
     // finding a single user by Id
@@ -62,7 +60,7 @@ const resolvers = {
           { _id: context.user._id },
           { $push: { articles: article._id } },
           { new: true }
-        );
+        ).populate("comments");
 
         return article;
       }

@@ -74,10 +74,23 @@ export const newsArticles = async () => {
           !articles.title.includes(" die", 0) &&
           !articles.title.includes("η", 0) &&
           !articles.title.includes("ത", 0) &&
-          !articles.title.includes("雪", 0) 
+          !articles.title.includes("雪", 0) &&
+          !articles.title.includes("child porn", 0) &&
+          !articles.title.includes("Child porn", 0) 
         );
       });
       return filteredArticles;
+    };
+
+    const filterDuplicates = (articles) => {
+      let results = [];
+      for (let i = 0; i < articles.length; i++) {
+        if (!results.includes(articles[i].title)) {
+          results.push(articles[i]);
+        }
+      }
+      console.log("remove duplicates", results);
+      return results;
     };
 
     const tech = await fetch(
@@ -103,7 +116,8 @@ export const newsArticles = async () => {
     console.log("allArticles", allArticles);
 
     console.log("filteredArticles", filterArticles(allArticles));
-    return filterArticles(allArticles);
+    const filteredArticles = filterArticles(allArticles);
+    return filterDuplicates(filteredArticles);
   } catch (error) {
     console.log(error);
   }
