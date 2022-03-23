@@ -40,6 +40,8 @@ export const newsArticles = async () => {
           !articles.title.includes("vaccinating", 0) &&
           !articles.title.includes("deaths", 0) &&
           !articles.title.includes("Deaths", 0) &&
+          !articles.title.includes("Dead", 0) &&
+          !articles.title.includes("dead", 0) &&
           !articles.title.includes("Homicide", 0) &&
           !articles.title.includes("homicide", 0) &&
           !articles.title.includes(" inflation ", 0) &&
