@@ -74,7 +74,9 @@ export const newsArticles = async () => {
           !articles.title.includes(" die", 0) &&
           !articles.title.includes("η", 0) &&
           !articles.title.includes("ത", 0) &&
-          !articles.title.includes("雪", 0)
+          !articles.title.includes("雪", 0) &&
+          !articles.title.includes("child porn", 0) &&
+          !articles.title.includes("Child porn", 0) 
         );
       });
       return filteredArticles;
