@@ -75,7 +75,6 @@ const Profile = () => {
     <main className="row justify-content-evenly">
       <h2 className="col-12 d-flex justify-content-center p-3">
         Viewing {userParam ? `${user.username}'s` : "your"} profile
-        {console.log(user.username, "username")}
       </h2>
 
       <div className="col-12 col-lg-3  d-flex justify-content-center mb-3">
@@ -85,7 +84,6 @@ const Profile = () => {
       <h2 className="col-12 d-flex justify-content-center p-3">
         Your saved articles:
       </h2>
-      {console.log(user, "this is userrr")}
       {user.articles.map((articles) => (
         <div
           className="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 mb-4 ms-1 no-gutters"

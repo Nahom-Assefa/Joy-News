@@ -14,12 +14,10 @@ const resolvers = {
         return userData;
       }
       throw new AuthenticationError("Not logged in");
-      // throw new AuthenticationError('Not logged in');
     },
 
     users: async () => {
       return User.find().select("-__v -password");
-      // .populate("savedArticle");
     },
 
     // finding a single user by Id
